@@ -1,0 +1,61 @@
+page-incoming {
+
+}
+button{
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,0) !important;
+    outline: none !important;
+  }
+    #page{
+      background-color: #F1F3F6;
+    }
+     // last year
+    
+     #incoming-header{
+      background: #80BCE6;
+      border: 1px #3498DB;
+      border-radius: 5px;
+    }
+    #incoming-header #icon-1{
+      background: #3498DB;
+      border-radius: 5px;
+      text-align: center
+    }
+    #incoming-header ion-icon{
+      font-size: 40px;color:white;margin-top:10px
+    }
+    #incoming-header i{
+      font-size: 30px;color:white;margin-top:10px
+    }
+    #incoming-body{
+      background: white;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    #incoming-body #legend-header{
+      background-color: #62CB31;
+      border-radius: 5px;
+    }
+    #incoming-body #legend-body{
+      margin-top: 5px;
+      background-color: #9BDB80;
+      border-radius: 5px;
+    }
+    #incoming-body #label {
+      // text-align:left;
+    }
+    #incoming-body #button {
+      text-align:right;
+    }
+    @media screen and (max-width: 480px){
+      #incoming-body #label {
+        text-align:center;
+        
+      }
+      #incoming-body #button {
+        float: left;
+        text-align:center;
+        
+    }
+  }
+  

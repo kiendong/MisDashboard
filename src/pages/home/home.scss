@@ -1,0 +1,156 @@
+button{
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,0) !important;
+  outline: none !important;
+}
+page-home {
+
+}
+#dashboard{
+    background-color: #F1F3F6;
+  }
+  // deal
+  
+  #deal-header{
+    background: #BD97D0;
+    border: 1px #9B59B6;
+    border-radius: 5px;
+  }
+  #deal-header #icon-1{
+    background: #9B59B6;
+    border-radius: 5px;
+    text-align: center
+  }
+  #deal-header ion-icon{
+    font-size: 40px;color:white;margin-top:10px
+  }
+  #deal-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  // target
+  
+  #target-header{
+    background: #80BCE6;
+    border: 1px #3498DB;
+    border-radius: 5px;
+  }
+  #target-header #icon-1{
+    background: #3498DB;
+    border-radius: 5px;
+    text-align: center
+  }
+  #target-header ion-icon{
+    font-size: 40px;color:white;margin-top:10px
+  }
+  #target-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+   // last year
+  
+   #last-year-header{
+    background: #9BDB80;
+    border: 1px #62CB31;
+    border-radius: 5px;
+  }
+  #last-year-header #icon-1{
+    background: #62CB31;
+    border-radius: 5px;
+    text-align: center
+  }
+  #last-year-header ion-icon{
+    font-size: 40px;color:white;margin-top:10px
+  }
+  #last-year-header i{
+    font-size: 30px;color:white;margin-top:10px
+  }
+  #last-year-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  #last-year-body #legend-header{
+    border-radius: 5px;
+    background-color: #FDEDEC;
+  }
+  #last-year-body #legend-body{
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  #last-year-body #legend-body ion-icon{
+    // background-color: #FDEDEC;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  #last-year-body #legend-body #legend{
+    margin:auto;
+  }
+  #last-year-body #legend-header #legend{
+    margin:auto;
+  }
+  #last-year-body #label {
+    // text-align:left;
+  }
+  #last-year-body #button {
+    text-align:right;
+  }
+  @media screen and (max-width: 480px){
+    #last-year-body #label {
+      text-align:center;
+      
+    }
+    #last-year-body #button {
+      float: left;
+      text-align:center;
+      
+  }
+  } 
+// service
+  
+#service-header{
+  background: #EAAD77;
+  border: 1px #E67E22;
+  border-radius: 5px;
+}
+#service-header #icon-1{
+  background: #E67E22;
+  border-radius: 5px;
+  text-align: center
+}
+#service-header ion-icon{
+  font-size: 40px;color:white;margin-top:10px
+}
+#service-header i{
+  font-size: 30px;color:white;margin-top:15px
+}
+#service-body{
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+// region
+
+#region-header{
+  background: #44A9A8;
+  border: 1px rgb(60, 146, 145);
+  border-radius: 5px;
+}
+#region-header #icon-1{
+  background: rgb(60, 146, 145);
+  border-radius: 5px;
+  text-align: center
+}
+#region-header ion-icon{
+  font-size: 40px;color:white;margin-top:10px
+}
+#region-header i{
+  font-size: 30px;color:white;margin-top:15px
+}
+#region-body{
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
