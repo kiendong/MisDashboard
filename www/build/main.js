@@ -107,7 +107,7 @@ var DealLossPage = (function () {
     };
     DealLossPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-deal-loss',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\deal-loss\deal-loss.html"*/'<!--\n  Generated template for the SectorPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Deal loss reason</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="reason">\n        <ion-row id="reason-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                94 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Deal loss reason\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="reason-body">\n          <ion-col col-12>\n            <div id="chartReason" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\deal-loss\deal-loss.html"*/,
+            selector: 'page-deal-loss',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\deal-loss\deal-loss.html"*/'<!--\n  Generated template for the SectorPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Deal loss reason</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="reason">\n        <ion-row id="reason-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                94 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Deal loss reason\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="reason-body">\n          <ion-col col-12>\n            <div id="chartReason" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\deal-loss\deal-loss.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], DealLossPage);
@@ -119,6 +119,128 @@ var DealLossPage = (function () {
 /***/ }),
 
 /***/ 103:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DealSourcePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the DealSourcePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+
+
+__WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
+__WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
+var DealSourcePage = (function () {
+    function DealSourcePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    DealSourcePage.prototype.ionViewDidLoad = function () {
+        this.chartSources = __WEBPACK_IMPORTED_MODULE_2_highcharts__["chart"]('chartSources', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: ' '
+            },
+            tooltip: {
+                // chỗ này format cho tooltip hiện lên
+                // pointFormat: '{series.name}  <b>{point.percentage:.1f}%</b>',
+                // formatter: function () {
+                //   return 'The value for <b>' + this.x +
+                //     '</b> is <b>' + this.y + '</b>';
+                // }
+                enabled: true, formatter: function () {
+                    return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + __WEBPACK_IMPORTED_MODULE_2_highcharts__["numberFormat"](this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+                }
+            },
+            legend: {
+                labelFormatter: function () {
+                    // Lấy cả số liệu của y và x data
+                    return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                    name: ' ',
+                    colorByPoint: true,
+                    data: [{
+                            name: 'Direct Sale',
+                            y: 0.7
+                        }, {
+                            name: 'Current Client',
+                            y: 12.18
+                        }, {
+                            name: 'Consultants',
+                            y: 2.58
+                        }, {
+                            name: 'Our website',
+                            y: 49.65
+                        }, {
+                            name: 'Referral',
+                            y: 10.07
+                        }, {
+                            name: 'Web/Email invitation',
+                            y: 11.24
+                        }, {
+                            name: 'Fan page',
+                            y: 2.34
+                        }]
+                }]
+        });
+    };
+    DealSourcePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-deal-source',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\deal-source\deal-source.html"*/'<!--\n  Generated template for the DealSourcePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Deal sources</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sources">\n        <ion-row id="sources-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Deal sources\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sources-body">\n          <ion-col col-12>\n            <ion-row>\n\n              <ion-col col-12 col-sm-12 id="button">\n                <ion-item style="width:300px; float:right;">\n                  <ion-label>Tình trạng</ion-label>\n                  <ion-select [(ngModel)]="status">\n                    <ion-option value="a" selected>Tất cả</ion-option>\n                    <ion-option value="c">Cancelled</ion-option>\n                    <ion-option value="d">Delayed</ion-option>\n                    <ion-option value="l">Lost</ion-option>\n                    <ion-option value="u">Unqualified</ion-option>\n                    <ion-option value="w">Won</ion-option>\n                  </ion-select>\n                </ion-item>\n              </ion-col>\n\n            </ion-row>\n            <div id="chartSources" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\deal-source\deal-source.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+    ], DealSourcePage);
+    return DealSourcePage;
+}());
+
+//# sourceMappingURL=deal-source.js.map
+
+/***/ }),
+
+/***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -250,7 +372,7 @@ var IncomingPage = (function () {
     };
     IncomingPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-incoming',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\incoming\incoming.html"*/'<!--\n  Generated template for the IncomingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Total incoming deal</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="incoming">\n        <ion-row id="incoming-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                253\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total incoming deal\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="incoming-body">\n          <ion-col col-12>\n            <ion-row>\n              <ion-col id="label" col-12 col-sm-6>\n                <!-- <button ion-button style="background-color:white;color:black;">40.000.000,00</button>\n                <button ion-button style="background-color:white;color:black">56.000.000,00</button> -->\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">Xem theo nhân viên BD1</button>\n              </ion-col>\n              <ion-col col-12 col-sm-6 id="button">\n                <button ion-button color="light">Xem theo nhân viên BD2</button>\n              </ion-col>\n\n            </ion-row>\n\n            <div id="chartIncoming" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\incoming\incoming.html"*/,
+            selector: 'page-incoming',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\incoming\incoming.html"*/'<!--\n  Generated template for the IncomingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Total incoming deal</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="incoming">\n        <ion-row id="incoming-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                253\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total incoming deal\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="incoming-body">\n          <ion-col col-12>\n            <ion-row>\n              <ion-col id="label" col-12 col-sm-6>\n                <!-- <button ion-button style="background-color:white;color:black;">40.000.000,00</button>\n                <button ion-button style="background-color:white;color:black">56.000.000,00</button> -->\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">Xem theo nhân viên BD1</button>\n              </ion-col>\n              <ion-col col-12 col-sm-6 id="button">\n                <button ion-button color="light">Xem theo nhân viên BD2</button>\n              </ion-col>\n\n            </ion-row>\n\n            <div id="chartIncoming" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\incoming\incoming.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], IncomingPage);
@@ -258,128 +380,6 @@ var IncomingPage = (function () {
 }());
 
 //# sourceMappingURL=incoming.js.map
-
-/***/ }),
-
-/***/ 104:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DealSourcePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_highcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the DealSourcePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
-
-__WEBPACK_IMPORTED_MODULE_3_highcharts_highcharts_more__(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
-__WEBPACK_IMPORTED_MODULE_4_highcharts_modules_solid_gauge__(__WEBPACK_IMPORTED_MODULE_2_highcharts__);
-var DealSourcePage = (function () {
-    function DealSourcePage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    DealSourcePage.prototype.ionViewDidLoad = function () {
-        this.chartSources = __WEBPACK_IMPORTED_MODULE_2_highcharts__["chart"]('chartSources', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: ' '
-            },
-            tooltip: {
-                // chỗ này format cho tooltip hiện lên
-                // pointFormat: '{series.name}  <b>{point.percentage:.1f}%</b>',
-                // formatter: function () {
-                //   return 'The value for <b>' + this.x +
-                //     '</b> is <b>' + this.y + '</b>';
-                // }
-                enabled: true, formatter: function () {
-                    return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + __WEBPACK_IMPORTED_MODULE_2_highcharts__["numberFormat"](this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
-                }
-            },
-            legend: {
-                labelFormatter: function () {
-                    // Lấy cả số liệu của y và x data
-                    return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-                }
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                    name: ' ',
-                    colorByPoint: true,
-                    data: [{
-                            name: 'Direct Sale',
-                            y: 0.7
-                        }, {
-                            name: 'Current Client',
-                            y: 12.18
-                        }, {
-                            name: 'Consultants',
-                            y: 2.58
-                        }, {
-                            name: 'Our website',
-                            y: 49.65
-                        }, {
-                            name: 'Referral',
-                            y: 10.07
-                        }, {
-                            name: 'Web/Email invitation',
-                            y: 11.24
-                        }, {
-                            name: 'Fan page',
-                            y: 2.34
-                        }]
-                }]
-        });
-    };
-    DealSourcePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-deal-source',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\deal-source\deal-source.html"*/'<!--\n  Generated template for the DealSourcePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Deal sources</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sources">\n        <ion-row id="sources-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Deal sources\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sources-body">\n          <ion-col col-12>\n            <ion-row>\n\n              <ion-col col-12 col-sm-12 id="button">\n                <ion-item style="width:300px; float:right;">\n                  <ion-label>Tình trạng</ion-label>\n                  <ion-select [(ngModel)]="status">\n                    <ion-option value="a" selected>Tất cả</ion-option>\n                    <ion-option value="c">Cancelled</ion-option>\n                    <ion-option value="d">Delayed</ion-option>\n                    <ion-option value="l">Lost</ion-option>\n                    <ion-option value="u">Unqualified</ion-option>\n                    <ion-option value="w">Won</ion-option>\n                  </ion-select>\n                </ion-item>\n              </ion-col>\n\n            </ion-row>\n            <div id="chartSources" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\deal-source\deal-source.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], DealSourcePage);
-    return DealSourcePage;
-}());
-
-//# sourceMappingURL=deal-source.js.map
 
 /***/ }),
 
@@ -496,7 +496,7 @@ var SectorPage = (function () {
     };
     SectorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-sector',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\sector\sector.html"*/'<!--\n  Generated template for the SectorPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Sales by client sector</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sector">\n        <ion-row id="sector-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by client sector\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sector-body">\n          <ion-col col-12>\n            <div id="chartSector" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\sector\sector.html"*/,
+            selector: 'page-sector',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\sector\sector.html"*/'<!--\n  Generated template for the SectorPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Sales by client sector</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sector">\n        <ion-row id="sector-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by client sector\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sector-body">\n          <ion-col col-12>\n            <div id="chartSector" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\sector\sector.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], SectorPage);
@@ -614,7 +614,7 @@ var SourcePage = (function () {
     };
     SourcePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-source',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\source\source.html"*/'<!--\n  Generated template for the sourcePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Sales by source</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="source">\n        <ion-row id="source-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by source\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="source-body">\n          <ion-col col-12>\n            <div id="chartSource" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\source\source.html"*/,
+            selector: 'page-source',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\source\source.html"*/'<!--\n  Generated template for the sourcePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Sales by source</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="source">\n        <ion-row id="source-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by source\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="source-body">\n          <ion-col col-12>\n            <div id="chartSource" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\source\source.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], SourcePage);
@@ -753,7 +753,7 @@ var TotalSalesPage = (function () {
     };
     TotalSalesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-total-sales',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\total-sales\total-sales.html"*/'<!--\n  Generated template for the IncomingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Total sales</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sales">\n        <ion-row id="sales-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total sales\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sales-body">\n          <ion-col col-12>\n            <ion-row>\n              <ion-col style="text-align:left;">\n                <!-- <button ion-button style="background-color:white;color:black;">40.000.000,00</button>\n                  <button ion-button style="background-color:white;color:black">56.000.000,00</button> -->\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">\n                  Khách hàng\n                </button>\n              </ion-col>\n\n            </ion-row>\n\n            <div id="chartSales" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\total-sales\total-sales.html"*/,
+            selector: 'page-total-sales',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\total-sales\total-sales.html"*/'<!--\n  Generated template for the IncomingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Total sales</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding id="page">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 id="sales">\n        <ion-row id="sales-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986.920,13 K\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total sales\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="sales-body">\n          <ion-col col-12>\n            <ion-row>\n              <ion-col style="text-align:left;">\n                <!-- <button ion-button style="background-color:white;color:black;">40.000.000,00</button>\n                  <button ion-button style="background-color:white;color:black">56.000.000,00</button> -->\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">\n                  Khách hàng\n                </button>\n              </ion-col>\n\n            </ion-row>\n\n            <div id="chartSales" style="display: block;"></div>\n          </ion-col>\n\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\total-sales\total-sales.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], TotalSalesPage);
@@ -790,11 +790,11 @@ var map = {
 		5
 	],
 	"../pages/deal-source/deal-source.module": [
-		283,
+		282,
 		4
 	],
 	"../pages/incoming/incoming.module": [
-		282,
+		283,
 		3
 	],
 	"../pages/sector/sector.module": [
@@ -1256,7 +1256,7 @@ var HomePage = (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Dashboard</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding id="dashboard">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-6 id="deal">\n        <ion-row id="deal-header">\n          <ion-col col-2 id="icon-1">\n            <ion-icon name="md-pricetags"></ion-icon>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total number of Deals (d)\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="deal-body">\n          <ion-col col-12 col-sm-12>\n            <div id="container" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="target">\n        <ion-row id="target-header">\n          <ion-col col-2 id="icon-1">\n            <ion-icon name="ios-locate-outline"></ion-icon>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                80 %\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale vs target\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="target-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartTarget" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-12 id="last-year">\n        <ion-row id="last-year-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986 T/ 33.996 T\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale vs last year\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="last-year-body">\n          <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>\n            <!-- <ion-row>\n              <ion-col id="label" col-12 col-sm-6>\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">\n                  Xem theo giá trị hợp đồng\n                </button>\n              </ion-col>\n              <ion-col col-12 col-sm-6 id="button">\n                <button ion-button color="light">Xem theo tổng doanh thu</button>\n              </ion-col>\n\n            </ion-row> -->\n\n            <div id="chartLastYear" style="display: block;"></div>\n          </ion-col>\n          <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>\n            <ion-row id="legend-header">\n              <ion-row id="legend">\n                <ion-col col-12 style=" text-align:center;">\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T\n                </ion-col>\n\n              </ion-row>\n            </ion-row>\n            <ion-row id="legend-body">\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03\n                </ion-col>\n              </ion-row>\n\n            </ion-row>\n\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="service">\n        <ion-row id="service-header">\n          <ion-col col-2 id="icon-1">\n            <i class="fa fa-pie-chart"></i>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by service\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="service-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartService" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="region">\n        <ion-row id="region-header">\n          <ion-col col-2 id="icon-1">\n            <i class="fa fa-pie-chart"></i>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by client region\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="region-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartRegion" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <!-- <ion-title>Dashboard</ion-title> -->\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding id="dashboard">\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-6 id="deal">\n        <ion-row id="deal-header">\n          <ion-col col-2 id="icon-1">\n            <ion-icon name="md-pricetags"></ion-icon>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Total number of Deals (d)\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="deal-body">\n          <ion-col col-12 col-sm-12>\n            <div id="container" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="target">\n        <ion-row id="target-header">\n          <ion-col col-2 id="icon-1">\n            <ion-icon name="ios-locate-outline"></ion-icon>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                80 %\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale vs target\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="target-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartTarget" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-12 id="last-year">\n        <ion-row id="last-year-header">\n          <ion-col col-2 col-sm-1 id="icon-1">\n            <i class="fa fa-area-chart"></i>\n          </ion-col>\n          <ion-col col-8 col-sm-9 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                39.986 T/ 33.996 T\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale vs last year\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="last-year-body">\n          <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>\n            <!-- <ion-row>\n              <ion-col id="label" col-12 col-sm-6>\n                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">\n                  Xem theo giá trị hợp đồng\n                </button>\n              </ion-col>\n              <ion-col col-12 col-sm-6 id="button">\n                <button ion-button color="light">Xem theo tổng doanh thu</button>\n              </ion-col>\n\n            </ion-row> -->\n\n            <div id="chartLastYear" style="display: block;"></div>\n          </ion-col>\n          <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>\n            <ion-row id="legend-header">\n              <ion-row id="legend">\n                <ion-col col-12 style=" text-align:center;">\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T\n                </ion-col>\n\n              </ion-row>\n            </ion-row>\n            <ion-row id="legend-body">\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02\n                </ion-col>\n              </ion-row>\n              <ion-row id="legend">\n                <ion-col col-12>\n                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03\n                </ion-col>\n              </ion-row>\n\n            </ion-row>\n\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="service">\n        <ion-row id="service-header">\n          <ion-col col-2 id="icon-1">\n            <i class="fa fa-pie-chart"></i>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by service\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="service-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartService" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n      <ion-col col-12 col-sm-6 id="region">\n        <ion-row id="region-header">\n          <ion-col col-2 id="icon-1">\n            <i class="fa fa-pie-chart"></i>\n          </ion-col>\n          <ion-col col-8 id="title">\n            <ion-row>\n              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">\n                427 Deals\n              </ion-col>\n              <ion-col col-12 style="color:white; font-size: 18px;">\n                Sale by client region\n              </ion-col>\n            </ion-row>\n          </ion-col>\n          <ion-col col-1 id="icon-2">\n            <!-- <ion-icon name="md-sync"></ion-icon> -->\n          </ion-col>\n          <ion-col col-1 id="icon-3">\n            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->\n          </ion-col>\n        </ion-row>\n        <ion-row id="region-body">\n          <ion-col col-12 col-sm-12>\n            <div id="chartRegion" style="display: block;"></div>\n          </ion-col>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], HomePage);
@@ -1312,7 +1312,7 @@ var ListPage = (function () {
     };
     ListPage = ListPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\pages\list\list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\pages\list\list.html"*/
+            selector: 'page-list',template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\pages\list\list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\pages\list\list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], ListPage);
@@ -1348,14 +1348,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_incoming_incoming__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_incoming_incoming__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_list_list__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_total_sales_total_sales__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_sector_sector__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_source_source__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_deal_source_deal_source__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_deal_source_deal_source__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_deal_loss_deal_loss__ = __webpack_require__(102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1398,8 +1398,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/deal-loss/deal-loss.module#DealLossPageModule', name: 'DealLossPage', segment: 'deal-loss', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/incoming/incoming.module#IncomingPageModule', name: 'IncomingPage', segment: 'incoming', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/deal-source/deal-source.module#DealSourcePageModule', name: 'DealSourcePage', segment: 'deal-source', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/incoming/incoming.module#IncomingPageModule', name: 'IncomingPage', segment: 'incoming', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/sector/sector.module#SectorPageModule', name: 'SectorPage', segment: 'sector', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/source/source.module#SourcePageModule', name: 'SourcePage', segment: 'source', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/total-sales/total-sales.module#TotalSalesPageModule', name: 'TotalSalesPage', segment: 'total-sales', priority: 'low', defaultHistory: [] }
@@ -1443,11 +1443,11 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_incoming_incoming__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_incoming_incoming__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_total_sales_total_sales__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_sector_sector__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_source_source__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_deal_source_deal_source__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_deal_source_deal_source__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_deal_loss_deal_loss__ = __webpack_require__(102);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1513,7 +1513,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\Ionic\Realease\HighChartsIonic\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>\n        <ion-row>\n          <ion-col col-5>\n            <img style="width:100px;height:100px; border-radius:50%;" src="assets/imgs/OCD0009.jpg">\n          </ion-col>\n          <ion-col col-7 style="font-size:18px">\n            Tăng Văn Khánh\n            <br> khanhtv@ocd.vn\n            <br>\n            <br>\n            <a href="#"> Đăng Xuất</a>\n          </ion-col>\n        </ion-row>\n\n\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.homePage)">\n\n        <div>\n          <i class="fa fa-tachometer fa-2x" style="color:#2D2B76" aria-hidden="true"></i>\n          Dashboard\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.incomingPage)">\n        <div>\n          <i class="fa fa-area-chart fa-2x" style="color:#3498DB"></i>\n          Total incoming deal\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.totalSalesPage)">\n        <div>\n          <i class="fa fa-area-chart fa-2x" style="color:#62CB31"></i>\n          Total Sales\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sectorPage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#E67E22"></i>\n          Sale by client sector\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sourcePage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#9B59B6"></i>\n          Sale by source\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealSourcePage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#3498DB"></i>\n          Deal source\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealLossPage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#3C9291"></i>\n          Deal loss reason\n        </div>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\Ionic\Realease\HighChartsIonic\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\Ionic\Realease\MisDashboard\src\app\app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>\n        <ion-row>\n          <ion-col col-5>\n            <img style="width:100px;height:100px; border-radius:50%;" src="assets/imgs/OCD0009.jpg">\n          </ion-col>\n          <ion-col col-7 style="font-size:18px">\n            Tăng Văn Khánh\n            <br> khanhtv@ocd.vn\n            <br>\n            <br>\n            <a href="#"> Đăng Xuất</a>\n          </ion-col>\n        </ion-row>\n\n\n      </ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.homePage)">\n\n        <div>\n          <i class="fa fa-tachometer fa-2x" style="color:#2D2B76" aria-hidden="true"></i>\n          Dashboard\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.incomingPage)">\n        <div>\n          <i class="fa fa-area-chart fa-2x" style="color:#3498DB"></i>\n          Total incoming deal\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.totalSalesPage)">\n        <div>\n          <i class="fa fa-area-chart fa-2x" style="color:#62CB31"></i>\n          Total Sales\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sectorPage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#E67E22"></i>\n          Sale by client sector\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sourcePage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#9B59B6"></i>\n          Sale by source\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealSourcePage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#3498DB"></i>\n          Deal source\n        </div>\n      </button>\n      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealLossPage)">\n        <div>\n          <i class="fa fa-pie-chart fa-2x" style="color:#3C9291"></i>\n          Deal loss reason\n        </div>\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"E:\Ionic\Realease\MisDashboard\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
