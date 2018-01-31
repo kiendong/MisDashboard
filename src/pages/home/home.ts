@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { AuthService } from '../../providers/auth-service/auth-service';
+import { App, LoadingController, ToastController } from 'ionic-angular';
+
 import * as HighCharts from 'highcharts';
 import * as HighchartsMore from 'highcharts/highcharts-more';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
+
+import { LoginPage } from '../login/login';
 HighchartsMore(HighCharts);
 SolidGauge(HighCharts);
 
@@ -17,8 +22,53 @@ export class HomePage {
   chartLastYear: any;
   chartService: any;
   chartRegion: any;
-  constructor(public navCtrl: NavController) {
+  loading: any;
+  isLoggedIn: boolean = false;
+  constructor(public navCtrl: NavController,
+    public app: App,
+    public authService: AuthService,
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) {
+    if (localStorage.getItem("token")) {
+      this.isLoggedIn = true;
+    }
+    // check and redirect to login page
+    if (!localStorage.getItem("token")) {
+      navCtrl.setRoot(LoginPage);
+    }
+  }
+  logout() {
+    this.authService.logout().then((result) => {
+      this.loadingCtrl.create();
+      let nav = this.app.getRootNav();
+      nav.setRoot(LoginPage);
+    }, (err) => {
+      this.loadingCtrl.create();
+      this.presentToast(err);
+    });
+  }
 
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Authenticating...'
+    });
+
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
   ionViewDidLoad() {

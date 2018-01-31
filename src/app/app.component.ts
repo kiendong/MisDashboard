@@ -11,6 +11,11 @@ import { SectorPage } from '../pages/sector/sector';
 import { SourcePage } from '../pages/source/source';
 import { DealSourcePage } from '../pages/deal-source/deal-source';
 import { DealLossPage } from '../pages/deal-loss/deal-loss';
+// login
+import { AuthService } from '../providers/auth-service/auth-service';
+import { App, LoadingController, ToastController } from 'ionic-angular';
+import { LoginPage } from '../pages/login/login';
+declare var FCMPlugin;
 
 @Component({
   templateUrl: 'app.html'
@@ -22,9 +27,45 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
   pages2: any;
+  loading: any;
+  isLoggedIn: boolean = false;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public app: App,
+    public authService: AuthService,
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) {
+    if (localStorage.getItem("token")) {
+      this.isLoggedIn = true;
+    }
     this.initializeApp();
+    if (this.platform.is('android')) {
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+
+        FCMPlugin.getToken(
+          (t) => {
+            console.log(t);
+          },
+          (e) => {
+            console.log(e);
+          }
+        );
+
+        FCMPlugin.onNotification(
+          (data) => {
+            console.log(data);
+          },
+          (e) => {
+            console.log(e);
+          }
+        );
+      });
+    }
+
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -44,7 +85,39 @@ export class MyApp {
     }
 
   }
+  logout() {
+    this.authService.logout().then((result) => {
+      this.loadingCtrl.create();
+      let nav = this.app.getRootNav();
+      nav.setRoot(LoginPage);
+    }, (err) => {
+      this.loadingCtrl.create();
+      this.presentToast(err);
+    });
+  }
 
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Authenticating...'
+    });
+
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

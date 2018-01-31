@@ -15,6 +15,12 @@ import { SourcePage } from '../pages/source/source';
 import { DealSourcePage } from '../pages/deal-source/deal-source';
 import { DealLossPage } from '../pages/deal-loss/deal-loss';
 
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+//login
+import { AuthService } from '../providers/auth-service/auth-service';
+import { LoginPage } from '../pages/login/login';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,11 +31,15 @@ import { DealLossPage } from '../pages/deal-loss/deal-loss';
     SectorPage,
     SourcePage,
     DealSourcePage,
-    DealLossPage
+    DealLossPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
+    HttpClientModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,12 +51,14 @@ import { DealLossPage } from '../pages/deal-loss/deal-loss';
     SectorPage,
     SourcePage,
     DealSourcePage,
-    DealLossPage
+    DealLossPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthService
   ]
 })
 export class AppModule { }
