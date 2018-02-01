@@ -22,6 +22,8 @@ export class HomePage {
   chartLastYear: any;
   chartService: any;
   chartRegion: any;
+  chartDealDonut: any;
+  LastYearRevenue: any;
   loading: any;
   isLoggedIn: boolean = false;
   constructor(public navCtrl: NavController,
@@ -168,6 +170,114 @@ export class HomePage {
       }],
 
     });
+    this.chartTarget = HighCharts.chart('chartDealDonut', {
+      chart: {
+        type: 'gauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: null,
+        plotBorderWidth: 0,
+        plotShadow: false
+      },
+      credits: {
+        enabled: false
+      },
+
+      title: {
+        text: ' '
+      },
+
+      pane: {
+        startAngle: - 120,
+        endAngle: 120,
+        background: false
+      },
+
+      // the value axis
+      yAxis: {
+        min: 0,
+        max: 200,
+
+        minorTickInterval: 'auto',
+        // chiều rộng của các vạch thước kẻ nhỏ
+        minorTickWidth: 0,
+        // Khoảng các của các vạch thước kẻ nhỏ
+        minorTickLength: 10,
+        minorTickPosition: 'inside',
+        minorTickColor: '#7D7D7D',
+        // vị trí số trên chart cách nhau 30 đơn vị
+        tickPixelInterval: 30,
+        // chiều rộng của các vạch thước kẻ chính 
+        tickWidth: 1,
+        tickPosition: 'inside',
+        // chiều dài của các vạch thước kẻ chính
+        tickLength: 10,
+        tickColor: '#7D7D7D',
+        labels: {
+          // số hiển thị trên thước đo
+          step: 2,
+          rotation: 'auto'
+        },
+        title: {
+          text: ' ',
+        },
+        plotBands: [{
+          from: 0,
+          to: 120,
+          color: '#55BF3B' // green
+        }, {
+          from: 120,
+          to: 160,
+          color: 'yellow' // yellow
+        }, {
+          from: 160,
+          to: 200,
+          color: '#DF5353' // red
+        }]
+      },
+      plotOptions: {
+        series: {
+          // data label là số ở giữa chart
+          dataLabels: {
+            enabled: false,
+            color: 'black',
+            borderWidth: 0,
+            style: {
+              textShadow: false,
+              fontSize: '18px',
+            }
+          },
+          showInLegend: true
+        },
+      },
+      legend: {
+        labelFormatter: function () {
+          // Lấy cả số liệu của y và x data
+          return '<span style="font-size:16px; font-weight: normal">' + this.name + ' - ' + this.y + '</span>';
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Browser share',
+        innerSize: '50%',
+        data: [{
+          name: 'Won',
+          y: 24
+        }, {
+          name: 'Lost',
+          y: 10
+        }, {
+          name: 'Open',
+          y: 4
+        }, {
+          name: 'Delay',
+          y: 5
+        }, {
+          name: 'Unqualified',
+          y: 9
+        }]
+      }]
+
+    });
     this.chartTarget = HighCharts.chart('chartTarget', {
       chart: {
         type: 'gauge',
@@ -272,6 +382,67 @@ export class HomePage {
 
     });
     this.chartLastYear = HighCharts.chart('chartLastYear', {
+      chart: {
+        type: 'areaspline'
+      },
+      title: {
+        text: ' '
+      },
+      legend: {
+        enabled: false
+        // layout: 'vertical',
+        // align: 'left',
+        // verticalAlign: 'top',
+        // x: 150,
+        // y: 100,
+        // floating: true,
+        // borderWidth: 1,
+        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      xAxis: {
+        categories: [
+          'T4',
+          'T5',
+          'T6',
+          'T7',
+          'T8',
+          'T9',
+          'T10',
+          'T11',
+          'T12',
+          'T1',
+          'T2',
+          'T3'
+        ]
+      },
+      yAxis: {
+        title: {
+          text: ' '
+        }
+      },
+      tooltip: {
+        shared: true,
+        valueSuffix: ' K'
+      },
+      credits: {
+        enabled: false
+      },
+      plotOptions: {
+        areaspline: {
+          fillOpacity: 0.5
+        }
+      },
+      series: [{
+        name: '2016',
+        data: [3, 4, 3, 5, 4, 10, 12, 3, 4, 3, 5, 4],
+        color: '#EDEDED',
+      }, {
+        name: '2017',
+        color: '#9BDB80',
+        data: [1, 3, 4, 3, 3, 5, 4, 1, 3, 4, 3, 3]
+      }]
+    });
+    this.chartLastYear = HighCharts.chart('LastYearRevenue', {
       chart: {
         type: 'areaspline'
       },

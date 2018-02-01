@@ -1,4 +1,4 @@
-<ion-content padding style="background-color:#F1F3F6; text-align:center">
+<ion-content padding style="color:white; text-align:center; background-image: url('../../assets/imgs/login.jpg');">
   <h2>Welcome to OCD </h2>
   <ion-grid>
     <ion-row>
@@ -6,16 +6,16 @@
 
       </ion-col>
       <ion-col col-8>
-        <form (submit)="doLogin()" style="background-color:white;">
-          <ion-item>
-            <ion-label style=" font-size: 20px;" stacked>Username</ion-label>
-            <ion-input style=" font-size: 20px;" [(ngModel)]="loginData.username" name="username" type="text" placeholder="Username"></ion-input>
+        <form (submit)="doLogin()" style="border-radius:5px;">
+          <ion-item style="background:none !important;">
+            <ion-label style=" font-size: 20px; color:white" stacked>Username</ion-label>
+            <ion-input style=" font-size: 20px; color:white" [(ngModel)]="loginData.username" name="username" type="text"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label style=" font-size: 20px;" stacked>Password</ion-label>
-            <ion-input style=" font-size: 20px;" [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password"></ion-input>
+          <ion-item style="background:none !important;">
+            <ion-label style=" font-size: 20px; color:white" stacked>Password</ion-label>
+            <ion-input style=" font-size: 20px; color:white" [(ngModel)]="loginData.password" name="password" type="password"></ion-input>
           </ion-item>
-          <button ion-button block type="submit">
+          <button ion-button style="background-color:#32DB64;" type="submit">
             Login
           </button>
         </form>
