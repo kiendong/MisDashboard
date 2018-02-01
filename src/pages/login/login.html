@@ -1,0 +1,29 @@
+<ion-content padding style="background-color:#F1F3F6; text-align:center">
+  <h2>Welcome to OCD </h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>
+
+      </ion-col>
+      <ion-col col-8>
+        <form (submit)="doLogin()" style="background-color:white;">
+          <ion-item>
+            <ion-label style=" font-size: 20px;" stacked>Username</ion-label>
+            <ion-input style=" font-size: 20px;" [(ngModel)]="loginData.username" name="username" type="text" placeholder="Username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label style=" font-size: 20px;" stacked>Password</ion-label>
+            <ion-input style=" font-size: 20px;" [(ngModel)]="loginData.password" name="password" type="password" placeholder="Password"></ion-input>
+          </ion-item>
+          <button ion-button block type="submit">
+            Login
+          </button>
+        </form>
+      </ion-col>
+      <ion-col col-2>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
