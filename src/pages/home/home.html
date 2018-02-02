@@ -10,374 +10,376 @@
 <ion-content padding id="dashboard">
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-sm-4 id="deal">
-        <ion-row id="deal-header">
-          <ion-col col-2 id="icon-1">
-            <ion-icon name="md-pricetags"></ion-icon>
-          </ion-col>
-          <ion-col col-8 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                427 Deals
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Deals total (d)
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="deal-body">
-          <ion-col col-12 col-sm-12>
-            <div id="container" style="display: block;"></div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-4 id="dealDonut">
-        <ion-row id="target-header">
-          <ion-col col-2 id="icon-1">
-            <ion-icon name="ios-locate-outline"></ion-icon>
-          </ion-col>
-          <ion-col col-8 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                80 %
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales vs target
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="target-body">
-          <ion-col col-12 col-sm-12>
-            <div id="chartDealDonut" style="display: block;"></div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-4 id="target">
-        <ion-row id="target-header">
-          <ion-col col-2 id="icon-1">
-            <ion-icon name="ios-locate-outline"></ion-icon>
-          </ion-col>
-          <ion-col col-8 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                80 %
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales vs target
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="target-body">
-          <ion-col col-12 col-sm-12>
-            <div id="chartTarget" style="display: block;"></div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-12 id="last-year">
-        <ion-row id="last-year-header">
-          <ion-col col-2 col-sm-1 id="icon-1">
-            <i class="fa fa-area-chart"></i>
-          </ion-col>
-          <ion-col col-8 col-sm-9 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                39.986 M/ 33.996 M
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales vs last year
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="last-year-body">
-          <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
-            <ion-row>
-              <ion-col id="label" col-12 col-sm-6>
-                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
-                  Xem theo giá trị hợp đồng
-                </button>
-              </ion-col>
-              <!-- <ion-col col-12 col-sm-6 id="button">
+      <ng-container *ngFor="let number of [1,2,3,4,5,6,7]">
+        <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-4 id="dealDonut">
+          <ion-row id="dealDonut-header">
+            <ion-col col-2 id="icon-1">
+              <ion-icon name="ios-locate-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-8 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  427 deals
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Deals Total (d)
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="dealDonut-body">
+            <ion-col col-12 col-sm-12>
+              <div id="chartDealDonut" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartTotalSales" col-12 col-sm-4 id="totalSale">
+          <ion-row id="totalSale-header">
+            <ion-col col-2 id="icon-1">
+              <ion-icon name="md-pricetags"></ion-icon>
+            </ion-col>
+            <ion-col col-8 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Total sales
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="totalSale-body">
+            <ion-col col-12 col-sm-12>
+              <div id="chartTotalSales" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartTarget" col-12 col-sm-4 id="target">
+          <ion-row id="target-header">
+            <ion-col col-2 id="icon-1">
+              <ion-icon name="ios-locate-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-8 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales vs target
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="target-body">
+            <ion-col col-12 col-sm-12>
+              <div id="chartTarget" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartLastYear" col-12 col-sm-12 id="last-year">
+          <ion-row id="last-year-header">
+            <ion-col col-2 col-sm-1 id="icon-1">
+              <i class="fa fa-area-chart"></i>
+            </ion-col>
+            <ion-col col-8 col-sm-9 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M/ 33.996 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales vs last year
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="last-year-body">
+            <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
+              <ion-row>
+                <ion-col id="label" col-12 col-sm-6>
+                  <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
+                    Xem theo giá trị hợp đồng
+                  </button>
+                </ion-col>
+                <!-- <ion-col col-12 col-sm-6 id="button">
                 <button ion-button color="light">Xem theo tổng doanh thu</button>
               </ion-col> -->
 
-            </ion-row>
-
-            <div id="chartLastYear" style="display: block;"></div>
-          </ion-col>
-          <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>
-            <ion-row id="legend-header">
-              <ion-row id="legend">
-                <ion-col col-12 style=" text-align:center;">
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T
-                </ion-col>
-
-              </ion-row>
-            </ion-row>
-            <ion-row id="legend-body">
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03
-                </ion-col>
               </ion-row>
 
-            </ion-row>
+              <div id="chartLastYear" style="display: block;"></div>
+            </ion-col>
+            <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>
+              <ion-row id="legend-header">
+                <ion-row id="legend">
+                  <ion-col col-12 style=" text-align:center;">
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T
+                  </ion-col>
 
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-12 id="LastYearRevenue">
-        <ion-row id="LastYearRevenue-header">
-          <ion-col col-2 col-sm-1 id="icon-1">
-            <i class="fa fa-area-chart"></i>
-          </ion-col>
-          <ion-col col-8 col-sm-9 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                39.986 M/ 33.996 M
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales vs last year
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="LastYearRevenue-body">
-          <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
-            <ion-row>
-              <ion-col id="label" col-12 col-sm-6>
-                <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
-                  Xem theo giá trị hợp đồng
-                </button>
-              </ion-col>
-              <!-- <ion-col col-12 col-sm-6 id="button">
-                <button ion-button color="light">Xem theo tổng doanh thu</button>
-              </ion-col> -->
+                </ion-row>
+              </ion-row>
+              <ion-row id="legend-body">
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03
+                  </ion-col>
+                </ion-row>
 
-            </ion-row>
-
-            <div id="LastYearRevenue" style="display: block;"></div>
-          </ion-col>
-          <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>
-            <ion-row id="legend-header">
-              <ion-row id="legend">
-                <ion-col col-12 style=" text-align:center;">
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T
-                </ion-col>
-
-              </ion-row>
-            </ion-row>
-            <ion-row id="legend-body">
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02
-                </ion-col>
-              </ion-row>
-              <ion-row id="legend">
-                <ion-col col-12>
-                  <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03
-                </ion-col>
               </ion-row>
 
-            </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartLastYearRevenue" col-12 col-sm-12 id="lastYearRevenue">
+          <ion-row id="lastYearRevenue-header">
+            <ion-col col-2 col-sm-1 id="icon-1">
+              <i class="fa fa-area-chart"></i>
+            </ion-col>
+            <ion-col col-8 col-sm-9 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M/ 33.996 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales vs last year
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="lastYearRevenue-body">
+            <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
+              <ion-row>
+                <ion-col id="label" col-12 col-sm-6>
+                  <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
+                    Xem theo tổng doanh thu
+                  </button>
+                </ion-col>
+                <!-- <ion-col col-12 col-sm-6 id="button">
+                  <button ion-button color="light">Xem theo tổng doanh thu</button>
+                </ion-col> -->
 
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-6 id="service">
-        <ion-row id="service-header">
-          <ion-col col-2 id="icon-1">
-            <i class="fa fa-pie-chart"></i>
-          </ion-col>
-          <ion-col col-8 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                39.986 M/ 33.996 M
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales by service
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="service-body">
-          <ion-col col-12 col-sm-12>
-            <div id="chartService" style="display: block;"></div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-      <ion-col col-12 col-sm-6 id="region">
-        <ion-row id="region-header">
-          <ion-col col-2 id="icon-1">
-            <i class="fa fa-pie-chart"></i>
-          </ion-col>
-          <ion-col col-8 id="title">
-            <ion-row>
-              <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                39.986 M/ 33.996 M
-              </ion-col>
-              <ion-col col-12 style="color:white; font-size: 18px;">
-                Sales by client region
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col col-1 id="icon-2">
-            <!-- <ion-icon name="md-sync"></ion-icon> -->
-          </ion-col>
-          <ion-col col-1 id="icon-3">
-            <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-          </ion-col>
-        </ion-row>
-        <ion-row id="region-body">
-          <ion-col col-12 col-sm-12>
-            <div id="chartRegion" style="display: block;"></div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
+              </ion-row>
+
+              <div id="chartLastYearRevenue" style="display: block;"></div>
+            </ion-col>
+            <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>
+              <ion-row id="legend-header">
+                <ion-row id="legend">
+                  <ion-col col-12 style=" text-align:center;">
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - 12T
+                  </ion-col>
+
+                </ion-row>
+              </ion-row>
+              <ion-row id="legend-body">
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T04
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T05
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T06
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T07
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T08
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T09
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T10
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T11
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 30% </ion-icon> - T12
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> 20% </ion-icon> - T01
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T02
+                  </ion-col>
+                </ion-row>
+                <ion-row id="legend">
+                  <ion-col col-12>
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> 50% </ion-icon> - T03
+                  </ion-col>
+                </ion-row>
+
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartService" col-12 col-sm-6 id="service">
+          <ion-row id="service-header">
+            <ion-col col-2 id="icon-1">
+              <i class="fa fa-pie-chart"></i>
+            </ion-col>
+            <ion-col col-8 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales by service
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="service-body">
+            <ion-col col-12 col-sm-12>
+              <div id="chartService" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartRegion" col-12 col-sm-6 id="region">
+          <ion-row id="region-header">
+            <ion-col col-2 id="icon-1">
+              <i class="fa fa-pie-chart"></i>
+            </ion-col>
+            <ion-col col-8 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  39.986 M
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales by client region
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-sync"></ion-icon> -->
+            </ion-col>
+            <ion-col col-1 id="icon-3">
+              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="region-body">
+            <ion-col col-12 col-sm-12>
+              <div id="chartRegion" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ng-container>
     </ion-row>
   </ion-grid>
 </ion-content>

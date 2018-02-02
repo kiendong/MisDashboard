@@ -11,58 +11,96 @@
             <br> khanhtv@ocd.vn
             <br>
             <br>
-            <a href="#" (click)="logout()"> Đăng xuất</a>
+            <a href="#" (click)="logout()"> Logout</a>
           </ion-col>
         </ion-row>
-
-
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.homePage)">
 
         <div>
-          <i class="fa fa-tachometer fa-2x" style="color:#2D2B76" aria-hidden="true"></i>
-          Dashboard
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-tachometer fa-2x" style="color:#2D2B76" aria-hidden="true"></i>
+            </ion-col>
+            <ion-col col-9>
+              Dashboard
+            </ion-col>
+          </ion-row>
+
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.incomingPage)">
         <div>
-          <i class="fa fa-area-chart fa-2x" style="color:#3498DB"></i>
-          Total incoming deal
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-area-chart fa-2x" style="color:#3498DB"></i>
+            </ion-col>
+            <ion-col col-9>Total incoming deal </ion-col>
+          </ion-row>
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.totalSalesPage)">
         <div>
-          <i class="fa fa-area-chart fa-2x" style="color:#62CB31"></i>
-          Total Sales
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-area-chart fa-2x" style="color:#62CB31"></i>
+            </ion-col>
+            <ion-col col-9> Total Sales </ion-col>
+          </ion-row>
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sectorPage)">
         <div>
-          <i class="fa fa-pie-chart fa-2x" style="color:#E67E22"></i>
-          Sale by client sector
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-pie-chart fa-2x" style="color:#E67E22"></i>
+            </ion-col>
+            <ion-col col-9> Sale by client sector </ion-col>
+          </ion-row>
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.sourcePage)">
         <div>
-          <i class="fa fa-pie-chart fa-2x" style="color:#9B59B6"></i>
-          Sale by source
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-pie-chart fa-2x" style="color:#9B59B6"></i>
+            </ion-col>
+            <ion-col col-9> Sale by source </ion-col>
+          </ion-row>
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealSourcePage)">
         <div>
-          <i class="fa fa-pie-chart fa-2x" style="color:#3498DB"></i>
-          Deal source
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-pie-chart fa-2x" style="color:#3498DB"></i>
+            </ion-col>
+            <ion-col col-9> Deal source </ion-col>
+          </ion-row>
         </div>
       </button>
       <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealLossPage)">
         <div>
-          <i class="fa fa-pie-chart fa-2x" style="color:#3C9291"></i>
-          Deal loss reason
+          <ion-row>
+            <ion-col col-3>
+              <i class="fa fa-pie-chart fa-2x" style="color:#3C9291"></i>
+            </ion-col>
+            <ion-col col-9> Deal loss reason </ion-col>
+          </ion-row>
+        </div>
+      </button>
+      <button menuClose ion-item icon-left (click)="nav.setRoot(pages2.dealLossPage)">
+        <div>
+          <ion-row>
+            <ion-col col-3>
+              <ion-icon name="settings" style="color:rgb(180, 168, 168); font-size: 35px; "></ion-icon>
+            </ion-col>
+            <ion-col col-9> Setting </ion-col>
+          </ion-row>
         </div>
       </button>
     </ion-list>

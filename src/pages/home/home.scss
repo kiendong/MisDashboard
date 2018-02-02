@@ -1,3 +1,10 @@
+
+.sort-children{
+  display:flex;
+  flex-direction: row;
+  flex-flow: row;
+}
+
 button{
   box-shadow: none !important;
   border-color: rgba(0,0,0,0) !important;
@@ -9,22 +16,43 @@ page-home {
 #dashboard{
     background-color: #F1F3F6;
   }
-  // deal
+   // deal total
   
-  #deal-header{
+  #dealDonut-header{
     background: #BD97D0;
     border: 1px #9B59B6;
     border-radius: 5px;
   }
-  #deal-header #icon-1{
+  #dealDonut-header #icon-1{
     background: #9B59B6;
     border-radius: 5px;
     text-align: center
   }
-  #deal-header ion-icon{
-    font-size: 40px;color:white;margin-top:10px
+  #dealDonut-header ion-icon{
+    font-size: 30px;color:white;margin-top:15px
   }
-  #deal-body{
+  #dealDonut-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+   // total sales
+  
+  #totalSale-header{
+    background: #80BCE6;
+    border: 1px #3498DB  ;
+    border-radius: 5px;
+  }
+  #totalSale-header #icon-1{
+    background: #3498DB;
+    border-radius: 5px;
+    text-align: center
+  }
+  #totalSale-header ion-icon{
+    font-size: 30px;color:white;margin-top:15px
+  }
+  #totalSale-body{
     background: white;
     border-radius: 5px;
     margin-top: 10px;
@@ -32,17 +60,17 @@ page-home {
   // target
   
   #target-header{
-    background: #80BCE6;
-    border: 1px #3498DB;
+    background: #9BDB80;
+    border: 1px #62CB31;
     border-radius: 5px;
   }
   #target-header #icon-1{
-    background: #3498DB;
+    background: #62CB31;
     border-radius: 5px;
     text-align: center
   }
   #target-header ion-icon{
-    font-size: 40px;color:white;margin-top:10px
+    font-size: 30px;color:white;margin-top:15px
   }
   #target-body{
     background: white;
@@ -52,12 +80,12 @@ page-home {
    // last year
   
    #last-year-header{
-    background: #9BDB80;
-    border: 1px #62CB31;
+    background: #EAAD77;
+    border: 1px #E67E22;
     border-radius: 5px;
   }
   #last-year-header #icon-1{
-    background: #62CB31;
+    background: #E67E22;
     border-radius: 5px;
     text-align: center
   }
@@ -108,74 +136,74 @@ page-home {
       
   }
   } 
-   // last year by revenue
+      // last year revenue
   
-   #LastYearRevenue-header{
-    background: #9BDB80;
-    border: 1px #62CB31;
-    border-radius: 5px;
-  }
-  #LastYearRevenue-header #icon-1{
-    background: #62CB31;
-    border-radius: 5px;
-    text-align: center
-  }
-  #LastYearRevenue-header ion-icon{
-    font-size: 40px;color:white;margin-top:10px
-  }
-  #LastYearRevenue-header i{
-    font-size: 30px;color:white;margin-top:10px
-  }
-  #LastYearRevenue-body{
-    background: white;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  #LastYearRevenue-body #legend-header{
-    border-radius: 5px;
-    background-color: #FDEDEC;
-  }
-  #LastYearRevenue-body #legend-body{
-    margin-top: 5px;
-    border-radius: 5px;
-  }
-  #LastYearRevenue-body #legend-body ion-icon{
-    // background-color: #FDEDEC;
-    margin-top: 5px;
-    border-radius: 5px;
-  }
-  #LastYearRevenue-body #legend-body #legend{
-    margin:auto;
-  }
-  #LastYearRevenue-body #legend-header #legend{
-    margin:auto;
-  }
-  #LastYearRevenuer-body #label {
-    // text-align:left;
-  }
-  #LastYearRevenue-body #button {
-    text-align:right;
-  }
-  @media screen and (max-width: 480px){
-    #LastYearRevenue-body #label {
-      text-align:center;
-      
-    }
-    #LastYearRevenue-body #button {
-      float: left;
-      text-align:center;
-      
-  }
-  } 
+      #lastYearRevenue-header{
+        background: #44A9A8;
+        border: 1px rgb(60, 146, 145);
+        border-radius: 5px;
+      }
+      #lastYearRevenue-header #icon-1{
+        background: rgb(60, 146, 145);
+        border-radius: 5px;
+        text-align: center
+      }
+      #lastYearRevenue-header ion-icon{
+        font-size: 40px;color:white;margin-top:10px
+      }
+      #lastYearRevenue-header i{
+        font-size: 30px;color:white;margin-top:10px
+      }
+      #lastYearRevenue-body{
+        background: white;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      #lastYearRevenue-body #legend-header{
+        border-radius: 5px;
+        background-color: #FDEDEC;
+      }
+      #lastYearRevenue-body #legend-body{
+        margin-top: 5px;
+        border-radius: 5px;
+      }
+      #lastYearRevenue-body #legend-body ion-icon{
+        // background-color: #FDEDEC;
+        margin-top: 5px;
+        border-radius: 5px;
+      }
+      #lastYearRevenue-body #legend-body #legend{
+        margin:auto;
+      }
+      #lastYearRevenue-body #legend-header #legend{
+        margin:auto;
+      }
+      #lastYearRevenue-body #label {
+        // text-align:left;
+      }
+      #lastYearRevenue-body #button {
+        text-align:right;
+      }
+      @media screen and (max-width: 480px){
+        #lastYearRevenue-body #label {
+          text-align:center;
+          
+        }
+        #lastYearRevenue-body #button {
+          float: left;
+          text-align:center;
+          
+      }
+      } 
 // service
   
 #service-header{
-  background: #EAAD77;
-  border: 1px #E67E22;
+  background: #BD97D0;
+  border: 1px #9B59B6;
   border-radius: 5px;
 }
 #service-header #icon-1{
-  background: #E67E22;
+  background: #9B59B6;
   border-radius: 5px;
   text-align: center
 }
@@ -193,12 +221,12 @@ page-home {
 // region
 
 #region-header{
-  background: #44A9A8;
-  border: 1px rgb(60, 146, 145);
+  background: #80BCE6;
+  border: 1px #3498DB;
   border-radius: 5px;
 }
 #region-header #icon-1{
-  background: rgb(60, 146, 145);
+  background: #3498DB;
   border-radius: 5px;
   text-align: center
 }

@@ -14,8 +14,10 @@ export class LoginPage {
   loginData = { username: '', password: '' };
   data: any;
 
-  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) { }
-
+  constructor(public navCtrl: NavController,
+    public authService: AuthService,
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) { }
   doLogin() {
     this.showLoader();
     this.authService.login(this.loginData).then((result) => {
@@ -27,7 +29,9 @@ export class LoginPage {
       this.authService.loadUser(localStorage.getItem("token")).then((data) => {
 
         console.log(data);
+
         localStorage.setItem('userStorage', JSON.stringify(data));
+        // debugger;
         that.navCtrl.setRoot(HomePage);
         // load xong hết mới tắt loading
         this.loading.dismiss();

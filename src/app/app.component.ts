@@ -29,7 +29,6 @@ export class MyApp {
   pages2: any;
   loading: any;
   isLoggedIn: boolean = false;
-
   constructor(public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
@@ -37,9 +36,6 @@ export class MyApp {
     public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
-    if (localStorage.getItem("token")) {
-      this.isLoggedIn = true;
-    }
     this.initializeApp();
     if (this.platform.is('android')) {
       platform.ready().then(() => {
@@ -68,11 +64,11 @@ export class MyApp {
 
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Total incoming deal', component: IncomingPage },
-      { title: 'List', component: ListPage }
-    ];
+    // this.pages = [
+    //   { title: 'Home', component: HomePage },
+    //   { title: 'Total incoming deal', component: IncomingPage },
+    //   { title: 'List', component: ListPage }
+    // ];
     this.pages2 = {
       listPage: ListPage,
       homePage: HomePage,

@@ -9,7 +9,7 @@ button{
     #page{
       background-color: #F1F3F6;
     }
-     // last year
+  // Total incoming BD1
     
      #incoming-header{
       background: #80BCE6;
@@ -58,4 +58,53 @@ button{
         
     }
   }
+  // Total incoming BD2
+    
+  #incomingBD2-header{
+    background: #9BDB80;
+    border: 1px #62CB31;
+    border-radius: 5px;
+  }
+  #incomingBD2-header #icon-1{
+    background: #62CB31;
+    border-radius: 5px;
+    text-align: center
+  }
+  #incomingBD2-header ion-icon{
+    font-size: 40px;color:white;margin-top:10px
+  }
+  #incomingBD2-header i{
+    font-size: 30px;color:white;margin-top:10px
+  }
+  #incomingBD2-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  #incomingBD2-body #legend-header{
+    background-color: #62CB31;
+    border-radius: 5px;
+  }
+  #incomingBD2-body #legend-body{
+    margin-top: 5px;
+    background-color: #9BDB80;
+    border-radius: 5px;
+  }
+  #incomingBD2-body #label {
+    // text-align:left;
+  }
+  #incomingBD2-body #button {
+    text-align:right;
+  }
+  @media screen and (max-width: 480px){
+    #incomingBD2-body #label {
+      text-align:center;
+      
+    }
+    #incomingBD2-body #button {
+      float: left;
+      text-align:center;
+      
+  }
+}
   

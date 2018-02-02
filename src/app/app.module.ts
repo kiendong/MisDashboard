@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 //login
 import { AuthService } from '../providers/auth-service/auth-service';
 import { LoginPage } from '../pages/login/login';
+import { VariableGlobalProvider } from '../providers/variable-global/variable-global';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { LoginPage } from '../pages/login/login';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthService
+    AuthService,
+    VariableGlobalProvider
   ]
 })
 export class AppModule { }

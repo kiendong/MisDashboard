@@ -17,7 +17,7 @@ SolidGauge(HighCharts);
   templateUrl: 'home.html'
 })
 export class HomePage {
-  chartDeal: any;
+  chartTotalSales: any;
   chartTarget: any;
   chartLastYear: any;
   chartService: any;
@@ -26,11 +26,31 @@ export class HomePage {
   LastYearRevenue: any;
   loading: any;
   isLoggedIn: boolean = false;
+  chartPositionsdefault = {
+    "chartDealDonut": 1,
+    "chartTotalSales": 2,
+    "chartTarget": 3,
+    "chartLastYear": 4,
+    "chartLastYearRevenue": 5,
+    "chartService": 6,
+    "chartRegion": 7
+  };
+  chartPositions: object;
+  chartDealDonutPosition = '';
   constructor(public navCtrl: NavController,
     public app: App,
     public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
+
+    // check and redirect to login page
+    if (!localStorage.getItem("chartPositions")) {
+      localStorage.setItem('chartPositions', JSON.stringify(this.chartPositionsdefault));
+    }
+    if (localStorage.getItem("chartPositions")) {
+      this.chartPositions = JSON.parse(localStorage.getItem("chartPositions"));
+    }
+
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
     }
@@ -74,102 +94,6 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.chartDeal = HighCharts.chart('container', {
-      chart: {
-        type: 'solidgauge'
-      },
-      credits: {
-        enabled: false
-      },
-
-      title: {
-        text: ' '
-      },
-      tooltip: {
-        // thêm % sau số liệu khi rê chuột
-        valueSuffix: '%'
-      },
-      yAxis: {
-        min: 0,
-        max: 100,
-        lineWidth: 0,
-        tickPositions: []
-      },
-      plotOptions: {
-        solidgauge: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: false
-          },
-          showInLegend: true
-        },
-        series: {
-          colorByPoint: false
-        }
-      },
-      legend: {
-        labelFormatter: function () {
-          var total = 0;
-          var total1 = 0;
-          // Lấy cả số liệu của y và x data
-          for (var i = this.yData.length; i--;) { total += this.yData[i]; total1 += this.xData[i]; };
-          //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + ': ' + total1 + ' d' + '</span>';
-        }
-      },
-      pane: {
-        startAngle: 0,
-        endAngle: 360,
-        background: [{ // Track for Move
-          outerRadius: '98%',
-          innerRadius: '96%',
-          backgroundColor: '#63CC32',
-          borderWidth: 0,
-          dashStyle: 'longdashdot'
-        }, { // Track for Exercise
-          outerRadius: '78%',
-          innerRadius: '76%',
-          backgroundColor: '#9A59B5',
-          dashStyle: 'shortdot',
-          borderWidth: 0
-        }, { // Track for Stand
-          outerRadius: '58%',
-          innerRadius: '56%',
-          backgroundColor: '#E77E2D',
-          borderWidth: 0
-        }]
-      },
-      series: [{
-        color: '#63CC32',
-        name: 'Won',
-        data: [{
-          radius: '100%',
-          innerRadius: '94%',
-          y: 80,
-          x: 100
-        }]
-      }, {
-        color: '#9A59B5',
-        name: 'Lost',
-        data: [{
-          radius: '80%',
-          innerRadius: '74%',
-          y: 65,
-          x: 195
-        }]
-      }, {
-        color: '#E77E2D',
-        name: 'Open',
-        data: [{
-          radius: '60%',
-          innerRadius: '54%',
-          y: 50,
-          x: 120
-        }]
-      }],
-
-    });
     this.chartTarget = HighCharts.chart('chartDealDonut', {
       chart: {
         type: 'gauge',
@@ -252,7 +176,7 @@ export class HomePage {
       legend: {
         labelFormatter: function () {
           // Lấy cả số liệu của y và x data
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + ' - ' + this.y + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.name + ': ' + this.y + ' d </span>';
         }
       },
       series: [{
@@ -269,13 +193,95 @@ export class HomePage {
           name: 'Open',
           y: 4
         }, {
-          name: 'Delay',
+          name: 'Delayed',
           y: 5
         }, {
           name: 'Unqualified',
           y: 9
         }]
       }]
+
+    });
+    this.chartTotalSales = HighCharts.chart('chartTotalSales', {
+      chart: {
+        type: 'solidgauge'
+      },
+      credits: {
+        enabled: false
+      },
+
+      title: {
+        text: ' '
+      },
+      tooltip: {
+        // thêm % sau số liệu khi rê chuột
+        valueSuffix: '%'
+      },
+      yAxis: {
+        min: 0,
+        max: 100,
+        lineWidth: 0,
+        tickPositions: []
+      },
+      plotOptions: {
+        solidgauge: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        },
+        series: {
+          colorByPoint: false
+        }
+      },
+      legend: {
+        labelFormatter: function () {
+          var total = 0;
+          var total1 = 0;
+          // Lấy cả số liệu của y và x data
+          for (var i = this.yData.length; i--;) { total += this.yData[i]; total1 += this.xData[i]; };
+          //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.name + ': ' + total1 + ' M' + '</span>';
+        }
+      },
+      pane: {
+        startAngle: 0,
+        endAngle: 360,
+        background: [{ // Track for Move
+          outerRadius: '98%',
+          innerRadius: '96%',
+          backgroundColor: '#63CC32',
+          borderWidth: 0,
+          dashStyle: 'longdashdot'
+        }, { // Track for Exercise
+          outerRadius: '78%',
+          innerRadius: '76%',
+          backgroundColor: '#9A59B5',
+          dashStyle: 'shortdot',
+          borderWidth: 0
+        }]
+      },
+      series: [{
+        color: '#63CC32',
+        name: 'Total sales (HD) ',
+        data: [{
+          radius: '100%',
+          innerRadius: '94%',
+          y: 80,
+          x: 39.986
+        }]
+      }, {
+        color: '#9A59B5',
+        name: 'Total sales (DT) ',
+        data: [{
+          radius: '80%',
+          innerRadius: '74%',
+          y: 65,
+          x: 33.996
+        }]
+      }],
 
     });
     this.chartTarget = HighCharts.chart('chartTarget', {
@@ -442,7 +448,7 @@ export class HomePage {
         data: [1, 3, 4, 3, 3, 5, 4, 1, 3, 4, 3, 3]
       }]
     });
-    this.chartLastYear = HighCharts.chart('LastYearRevenue', {
+    this.chartLastYear = HighCharts.chart('chartLastYearRevenue', {
       chart: {
         type: 'areaspline'
       },
