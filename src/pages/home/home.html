@@ -10,7 +10,7 @@
 <ion-content padding id="dashboard">
   <ion-grid>
     <ion-row>
-      <ng-container *ngFor="let number of [1,2,3,4,5,6,7]">
+      <ng-container *ngFor="let number of numbers">
         <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-4 id="dealDonut">
           <ion-row id="dealDonut-header">
             <ion-col col-2 id="icon-1">
@@ -27,10 +27,11 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
+                <ion-icon name="md-remove" (click)="removePost('dealDonut')"></ion-icon>
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
             <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+              
             </ion-col>
           </ion-row>
           <ion-row id="dealDonut-body">
@@ -50,7 +51,7 @@
                   39.986 M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
-                  Total sales
+                  Sales Total (2018)
                 </ion-col>
               </ion-row>
             </ion-col>
@@ -103,7 +104,7 @@
             <ion-col col-8 col-sm-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M/ 33.996 M
+                  39.986 M vs 33.996 M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year
@@ -217,7 +218,7 @@
             <ion-col col-8 col-sm-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M/ 33.996 M
+                  39.986 M vs 33.996 M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year

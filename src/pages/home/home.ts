@@ -26,6 +26,8 @@ export class HomePage {
   LastYearRevenue: any;
   loading: any;
   isLoggedIn: boolean = false;
+  abc = 80;
+  numbers = [1 , 2 , 3 , 4 , 5 , 6 , 7];
   chartPositionsdefault = {
     "chartDealDonut": 1,
     "chartTotalSales": 2,
@@ -59,6 +61,17 @@ export class HomePage {
       navCtrl.setRoot(LoginPage);
     }
   }
+//  Ẩn hiện toàn bộ grid
+//   removePost(number){
+//     let index = this.numbers.indexOf(number);
+
+//     if(index > -1){
+//       this.numbers.splice(index, 1);
+//     }
+// }
+removePost(number){
+ number.hideMe = true;
+}  
   logout() {
     this.authService.logout().then((result) => {
       this.loadingCtrl.create();
@@ -374,13 +387,13 @@ export class HomePage {
           for (var i = this.yData.length; i--;) { total += this.yData[i]; };
           //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
           // return '<span style="font-size:16px;">' + 'Now: ' + total + '%/ 200%' + '</span>';
-          return '<span style="font-size:16px; font-weight:normal">' + '39.986.920 K/ 27.000.000 K' + '</span>';
+          return '<span style="font-size:16px; font-weight:normal">' + '39.986 M ' + '</span>' + ' vs '+'<span style="font-size:16px; font-weight:normal">' +'27.000 M' + '</span>';
 
         }
       },
       series: [{
         name: 'Target',
-        data: [80],
+        data: [this.abc],
         tooltip: {
           valueSuffix: ' /200'
         }
