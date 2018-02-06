@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { App, LoadingController, ToastController } from 'ionic-angular';
 
@@ -12,11 +12,17 @@ import { LoginPage } from '../login/login';
 HighchartsMore(HighCharts);
 SolidGauge(HighCharts);
 
+//API
+// import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  //chart parameter
   chartTotalSales: any;
   chartTarget: any;
   chartLastYear: any;
@@ -24,11 +30,12 @@ export class HomePage {
   chartRegion: any;
   chartDealDonut: any;
   LastYearRevenue: any;
+  // login
   loading: any;
   isLoggedIn: boolean = false;
   abc = 80;
+  //position chart parameter
   numbers = [1, 2, 3, 4, 5, 6, 7];
-  dealDonut: boolean;
   chartPositionsdefault = {
     "chartDealDonut": 1,
     "chartTotalSales": 2,
@@ -40,12 +47,37 @@ export class HomePage {
   };
   chartPositions: object;
   chartDealDonutPosition = '';
+  //API
+  getUrl = 'http://crm.ocd.vn/api/v001/Mobile/';
+  token = '';
+  ngayBatDau: Date = new Date('2017/03/31');
+  ngayKetThuc: Date = new Date('2018/02/05');
+  jsonNgayBatDau = this.ngayBatDau.toJSON();
+  jsonNgayKetThuc = this.ngayKetThuc.toJSON();
+
+  chartDealDonutAPI: object;
   constructor(public navCtrl: NavController,
     public app: App,
+    public http: Http,
     public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
+    //check login and back to login pages
+    if (localStorage.getItem("token")) {
+      this.isLoggedIn = true;
+      this.token = localStorage.getItem("token");
+    }
+    // check and redirect to login page
+    if (!localStorage.getItem("token")) {
+      navCtrl.setRoot(LoginPage);
+    }
+    // API chart call
+    let Params = new HttpParams();
+    Params = Params.set('ngayBatDau', this.jsonNgayBatDau);
+    Params = Params.set('ngayKetThuc', this.jsonNgayKetThuc);
+    // console.log(this.getCurrentFinancialYear(););
 
+    console.log(this.chartDealDonutAPI);
     // save position chart to localstorage
     if (!localStorage.getItem("chartPositions")) {
       localStorage.setItem('chartPositions', JSON.stringify(this.chartPositionsdefault));
@@ -53,13 +85,55 @@ export class HomePage {
     if (localStorage.getItem("chartPositions")) {
       this.chartPositions = JSON.parse(localStorage.getItem("chartPositions"));
     }
-    //check login and back to login pages
-    if (localStorage.getItem("token")) {
-      this.isLoggedIn = true;
+
+  }
+  // get financialYear
+  //   function getCurrentFinancialYear() {
+  //   let fiscalyear:string = '';
+  //   let today = new Date();
+  //   if ((today.getMonth() + 1) <= 3) {
+  //     fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+  //   } else {
+  //     fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+  //   }
+  //   return fiscalyear
+  // }
+
+  // API Call function
+  connectWithAuth(pmethod, URL, data, token) {
+    let headers = new Headers({
+      "Data-type": "json",
+      'Content-type': 'application/json;charset=utf-8',
+      'Authorization': 'Bearer ' + token,
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    if (pmethod == "GET") {
+      options.search = data;
+      // return this.http.get(URL, options).map(res => res.json()).toPromise();
+      return new Promise((resolve, reject) => {
+        // We're using Angular HTTP provider to request the data,
+        // then on the response, it'll map the JSON data to a parsed JS object.
+        // Next, we process the data and resolve the promise with the new data.
+        this.http.get(URL, options)
+          .subscribe(data => {
+            // we've got back the raw data, now generate the core schedule data
+            // and save the data for later reference
+            resolve(data.json());
+            //debugger;
+          }, (err) => {
+            reject(err);
+          });
+      });
     }
-    // check and redirect to login page
-    if (!localStorage.getItem("token")) {
-      navCtrl.setRoot(LoginPage);
+    else if (pmethod == "POST") {
+      return this.http.post(URL, JSON.stringify(data), options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "PUT") {
+      return this.http.put(URL, data, options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "DELETE") {
+      return this.http.delete(URL, options).map(res => res.json()).toPromise();
     }
   }
   //  Ẩn hiện toàn bộ grid
@@ -101,8 +175,8 @@ export class HomePage {
 
     toast.present();
   }
-  ionViewDidLoad() {
-    this.chartTarget = HighCharts.chart('chartDealDonut', {
+  buildchartDealDonut(data) {
+    return HighCharts.chart('chartDealDonut', {
       chart: {
         type: 'gauge',
         plotBackgroundColor: null,
@@ -181,6 +255,18 @@ export class HomePage {
           showInLegend: true
         },
       },
+      tooltip: {
+        // chỗ này format cho tooltip hiện lên
+        // pointFormat: '{series.name}  <b>{point.percentage:.1f}%</b>',
+        // formatter: function () {
+        //   return 'The value for <b>' + this.x +
+        //     '</b> is <b>' + this.y + '</b>';
+        // }
+
+        enabled: true, formatter: function () {
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+        }
+      },
       legend: {
         labelFormatter: function () {
           // Lấy cả số liệu của y và x data
@@ -191,25 +277,28 @@ export class HomePage {
         type: 'pie',
         name: 'Browser share',
         innerSize: '50%',
-        data: [{
-          name: 'Won',
-          y: 24
-        }, {
-          name: 'Lost',
-          y: 10
-        }, {
-          name: 'Open',
-          y: 4
-        }, {
-          name: 'Delayed',
-          y: 5
-        }, {
-          name: 'Unqualified',
-          y: 9
-        }]
+        data: data
       }]
 
     });
+  }
+
+  ionViewDidLoad() {
+    let that = this;
+    //chartDealDonut
+    this.showLoader();
+    that.connectWithAuth('GET', that.getUrl + "Mobile_Deal", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
+      // this.loading.dismiss();
+      // that.chartDealDonutAPI = result;
+      that.chartDealDonut = that.buildchartDealDonut(result);
+      localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
+      // turn off loading
+      this.loading.dismiss();
+    }, (err) => {
+
+      this.presentToast(err);
+    });
+
     this.chartTotalSales = HighCharts.chart('chartTotalSales', {
       chart: {
         type: 'solidgauge'
@@ -656,5 +745,7 @@ export class HomePage {
       }]
 
     });
+
   }
+
 }

@@ -27,11 +27,7 @@ export class LoginPage {
 
       let that = this;
       this.authService.loadUser(localStorage.getItem("token")).then((data) => {
-
-        console.log(data);
-
         localStorage.setItem('userStorage', JSON.stringify(data));
-        // debugger;
         that.navCtrl.setRoot(HomePage);
         // load xong hết mới tắt loading
         this.loading.dismiss();

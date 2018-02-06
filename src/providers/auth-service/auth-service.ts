@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://id.ooc.vn/';
+let apiUrl = 'http://id.ocd.vn/';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
       params.set('grant_type', 'password');
       params.set('username', credentials.username);
       params.set('password', credentials.password);
-      params.set('scope', 'openid profile roles publicApi mail company all_claims');
+      params.set('scope', 'openid profile roles publicApi mail email all_claims');
 
       this.http.post(apiUrl + "identity/connect/token", params, options)
         .subscribe(res => {
