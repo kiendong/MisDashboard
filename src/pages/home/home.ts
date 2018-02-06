@@ -27,7 +27,8 @@ export class HomePage {
   loading: any;
   isLoggedIn: boolean = false;
   abc = 80;
-  numbers = [1 , 2 , 3 , 4 , 5 , 6 , 7];
+  numbers = [1, 2, 3, 4, 5, 6, 7];
+  dealDonut: boolean;
   chartPositionsdefault = {
     "chartDealDonut": 1,
     "chartTotalSales": 2,
@@ -45,14 +46,14 @@ export class HomePage {
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
 
-    // check and redirect to login page
+    // save position chart to localstorage
     if (!localStorage.getItem("chartPositions")) {
       localStorage.setItem('chartPositions', JSON.stringify(this.chartPositionsdefault));
     }
     if (localStorage.getItem("chartPositions")) {
       this.chartPositions = JSON.parse(localStorage.getItem("chartPositions"));
     }
-
+    //check login and back to login pages
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
     }
@@ -61,17 +62,14 @@ export class HomePage {
       navCtrl.setRoot(LoginPage);
     }
   }
-//  Ẩn hiện toàn bộ grid
-//   removePost(number){
-//     let index = this.numbers.indexOf(number);
+  //  Ẩn hiện toàn bộ grid
+  // removePost(number) {
+  //   let index = this.numbers.indexOf(number);
 
-//     if(index > -1){
-//       this.numbers.splice(index, 1);
-//     }
-// }
-removePost(number){
- number.hideMe = true;
-}  
+  //   if (index > -1) {
+  //     this.numbers.splice(index, 1);
+  //   }
+  // }
   logout() {
     this.authService.logout().then((result) => {
       this.loadingCtrl.create();
@@ -82,7 +80,6 @@ removePost(number){
       this.presentToast(err);
     });
   }
-
   showLoader() {
     this.loading = this.loadingCtrl.create({
       content: 'Authenticating...'
@@ -90,7 +87,6 @@ removePost(number){
 
     this.loading.present();
   }
-
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -105,7 +101,6 @@ removePost(number){
 
     toast.present();
   }
-
   ionViewDidLoad() {
     this.chartTarget = HighCharts.chart('chartDealDonut', {
       chart: {
@@ -232,7 +227,7 @@ removePost(number){
       },
       yAxis: {
         min: 0,
-        max: 100,
+        max: 200,
         lineWidth: 0,
         tickPositions: []
       },
@@ -282,7 +277,7 @@ removePost(number){
         data: [{
           radius: '100%',
           innerRadius: '94%',
-          y: 80,
+          y: 140,
           x: 39.986
         }]
       }, {
@@ -387,7 +382,7 @@ removePost(number){
           for (var i = this.yData.length; i--;) { total += this.yData[i]; };
           //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
           // return '<span style="font-size:16px;">' + 'Now: ' + total + '%/ 200%' + '</span>';
-          return '<span style="font-size:16px; font-weight:normal">' + '39.986 M ' + '</span>' + ' vs '+'<span style="font-size:16px; font-weight:normal">' +'27.000 M' + '</span>';
+          return '<span style="font-size:16px; font-weight:normal">' + '39.986 M ' + '</span>' + ' vs ' + '<span style="font-size:16px; font-weight:normal">' + '27.000 M' + '</span>';
 
         }
       },

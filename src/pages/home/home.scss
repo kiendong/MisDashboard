@@ -79,58 +79,58 @@ page-home {
   }
    // last year
   
-   #last-year-header{
+   #lastYear-header{
     background: #EAAD77;
     border: 1px #E67E22;
     border-radius: 5px;
   }
-  #last-year-header #icon-1{
+  #lastYear-header #icon-1{
     background: #E67E22;
     border-radius: 5px;
     text-align: center
   }
-  #last-year-header ion-icon{
+  #lastYear-header ion-icon{
     font-size: 40px;color:white;margin-top:10px
   }
-  #last-year-header i{
+  #lastYear-header i{
     font-size: 30px;color:white;margin-top:10px
   }
-  #last-year-body{
+  #lastYear-body{
     background: white;
     border-radius: 5px;
     margin-top: 10px;
   }
-  #last-year-body #legend-header{
+  #lastYear-body #legend-header{
     border-radius: 5px;
     background-color: #FDEDEC;
   }
-  #last-year-body #legend-body{
+  #lastYear-body #legend-body{
     margin-top: 5px;
     border-radius: 5px;
   }
-  #last-year-body #legend-body ion-icon{
+  #lastYear-body #legend-body ion-icon{
     // background-color: #FDEDEC;
     margin-top: 5px;
     border-radius: 5px;
   }
-  #last-year-body #legend-body #legend{
+  #lastYear-body #legend-body #legend{
     margin:auto;
   }
-  #last-year-body #legend-header #legend{
+  #lastYear-body #legend-header #legend{
     margin:auto;
   }
-  #last-year-body #label {
+  #lastYear-body #label {
     // text-align:left;
   }
-  #last-year-body #button {
+  #lastYear-body #button {
     text-align:right;
   }
   @media screen and (max-width: 480px){
-    #last-year-body #label {
+    #lastYear-body #label {
       text-align:center;
       
     }
-    #last-year-body #button {
+    #lastYear-body #button {
       float: left;
       text-align:center;
       

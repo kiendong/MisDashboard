@@ -27,14 +27,14 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-                <ion-icon name="md-remove" (click)="removePost('dealDonut')"></ion-icon>
+              <ion-icon name="md-arrow-dropdown" (click)="dealDonut = !dealDonut"></ion-icon>
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
             <ion-col col-1 id="icon-3">
-              
+
             </ion-col>
           </ion-row>
-          <ion-row id="dealDonut-body">
+          <ion-row id="dealDonut-body" [hidden]="dealDonut">
             <ion-col col-12 col-sm-12>
               <div id="chartDealDonut" style="display: block;"></div>
             </ion-col>
@@ -56,13 +56,13 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <!-- <ion-icon name="md-sync"></ion-icon> -->
+              <ion-icon name="md-arrow-dropdown" (click)="totalSale = !totalSale"></ion-icon>
             </ion-col>
             <ion-col col-1 id="icon-3">
               <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="totalSale-body">
+          <ion-row id="totalSale-body" [hidden]="totalSale">
             <ion-col col-12 col-sm-12>
               <div id="chartTotalSales" style="display: block;"></div>
             </ion-col>
@@ -84,24 +84,24 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <!-- <ion-icon name="md-sync"></ion-icon> -->
+              <ion-icon name="md-arrow-dropdown" (click)="target = !target"></ion-icon>
             </ion-col>
             <ion-col col-1 id="icon-3">
               <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="target-body">
+          <ion-row id="target-body" [hidden]="target">
             <ion-col col-12 col-sm-12>
               <div id="chartTarget" style="display: block;"></div>
             </ion-col>
           </ion-row>
         </ion-col>
-        <ion-col *ngIf="number == chartPositions.chartLastYear" col-12 col-sm-12 id="last-year">
-          <ion-row id="last-year-header">
+        <ion-col *ngIf="number == chartPositions.chartLastYear" col-12 col-sm-12 id="lastYear">
+          <ion-row id="lastYear-header">
             <ion-col col-2 col-sm-1 id="icon-1">
               <i class="fa fa-area-chart"></i>
             </ion-col>
-            <ion-col col-8 col-sm-9 id="title">
+            <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
                   39.986 M vs 33.996 M
@@ -111,14 +111,11 @@
                 </ion-col>
               </ion-row>
             </ion-col>
-            <ion-col col-1 id="icon-2">
-              <!-- <ion-icon name="md-sync"></ion-icon> -->
-            </ion-col>
             <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
+              <ion-icon name="md-arrow-dropdown" (click)="lastYear = !lastYear"></ion-icon>
             </ion-col>
           </ion-row>
-          <ion-row id="last-year-body">
+          <ion-row id="lastYear-body" [hidden]="lastYear">
             <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
               <ion-row>
                 <ion-col id="label" col-12 col-sm-6>
@@ -129,9 +126,7 @@
                 <!-- <ion-col col-12 col-sm-6 id="button">
                 <button ion-button color="light">Xem theo tổng doanh thu</button>
               </ion-col> -->
-
               </ion-row>
-
               <div id="chartLastYear" style="display: block;"></div>
             </ion-col>
             <ion-col col-12 col-sm-2 col-lg-2 col-xl-1>
@@ -215,7 +210,7 @@
             <ion-col col-2 col-sm-1 id="icon-1">
               <i class="fa fa-area-chart"></i>
             </ion-col>
-            <ion-col col-8 col-sm-9 id="title">
+            <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
                   39.986 M vs 33.996 M
@@ -226,13 +221,11 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <!-- <ion-icon name="md-sync"></ion-icon> -->
+              <ion-icon name="md-arrow-dropdown" (click)="lastYearRevenue = !lastYearRevenue"></ion-icon>
             </ion-col>
-            <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-            </ion-col>
+
           </ion-row>
-          <ion-row id="lastYearRevenue-body">
+          <ion-row id="lastYearRevenue-body" [hidden]="lastYearRevenue">
             <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
               <ion-row>
                 <ion-col id="label" col-12 col-sm-6>
@@ -329,7 +322,7 @@
             <ion-col col-2 id="icon-1">
               <i class="fa fa-pie-chart"></i>
             </ion-col>
-            <ion-col col-8 id="title">
+            <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
                   39.986 M
@@ -340,13 +333,11 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <!-- <ion-icon name="md-sync"></ion-icon> -->
+              <ion-icon name="md-arrow-dropdown" (click)="service = !service"></ion-icon>
             </ion-col>
-            <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-            </ion-col>
+
           </ion-row>
-          <ion-row id="service-body">
+          <ion-row id="service-body" [hidden]="service">
             <ion-col col-12 col-sm-12>
               <div id="chartService" style="display: block;"></div>
             </ion-col>
@@ -357,7 +348,7 @@
             <ion-col col-2 id="icon-1">
               <i class="fa fa-pie-chart"></i>
             </ion-col>
-            <ion-col col-8 id="title">
+            <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
                   39.986 M
@@ -368,13 +359,11 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
+              <ion-icon name="md-arrow-dropdown" (click)="region = !region"></ion-icon>
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
-            <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
-            </ion-col>
           </ion-row>
-          <ion-row id="region-body">
+          <ion-row id="region-body" [hidden]="region">
             <ion-col col-12 col-sm-12>
               <div id="chartRegion" style="display: block;"></div>
             </ion-col>
