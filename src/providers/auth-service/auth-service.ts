@@ -43,7 +43,7 @@ export class AuthService {
       // We're using Angular HTTP provider to request the data,
       // then on the response, it'll map the JSON data to a parsed JS object.
       // Next, we process the data and resolve the promise with the new data.
-      this.http.get(apiUrl + 'api/USER/USER_UserProfile_GetCurrentUser', options)
+      this.http.get(apiUrl + 'identity/connect/userinfo', options)
         .subscribe(data => {
           console.log("loadUser");
           // we've got back the raw data, now generate the core schedule data

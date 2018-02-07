@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { HttpParams } from '@angular/common/http';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { App, LoadingController, ToastController } from 'ionic-angular';
-
+//High Chart
 import * as HighCharts from 'highcharts';
 import * as HighchartsMore from 'highcharts/highcharts-more';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
@@ -29,11 +29,10 @@ export class HomePage {
   chartService: any;
   chartRegion: any;
   chartDealDonut: any;
-  LastYearRevenue: any;
+  chartLastYearRevenue: any;
   // login
   loading: any;
   isLoggedIn: boolean = false;
-  abc = 80;
   //position chart parameter
   numbers = [1, 2, 3, 4, 5, 6, 7];
   chartPositionsdefault = {
@@ -52,8 +51,16 @@ export class HomePage {
   token = '';
   ngayBatDau: Date = new Date('2017/03/31');
   ngayKetThuc: Date = new Date('2018/02/05');
+  toDay: Date = new Date();
+  financialYear: Date;
+  financialDayStart: Date;
+  financialDayEnd: Date;
+  financialLastYear: Date;
+  strFinancialYear:number;
   jsonNgayBatDau = this.ngayBatDau.toJSON();
   jsonNgayKetThuc = this.ngayKetThuc.toJSON();
+  DealTotal:number = 0;
+  SaleTotalHDNow:number = 0;
 
   chartDealDonutAPI: object;
   constructor(public navCtrl: NavController,
@@ -88,7 +95,7 @@ export class HomePage {
 
   }
   // get financialYear
-  //   function getCurrentFinancialYear() {
+  // getCurrentFinancialYear() {
   //   let fiscalyear:string = '';
   //   let today = new Date();
   //   if ((today.getMonth() + 1) <= 3) {
@@ -144,6 +151,8 @@ export class HomePage {
   //     this.numbers.splice(index, 1);
   //   }
   // }
+
+  // Logout and loading function
   logout() {
     this.authService.logout().then((result) => {
       this.loadingCtrl.create();
@@ -175,6 +184,7 @@ export class HomePage {
 
     toast.present();
   }
+  //Chart build
   buildchartDealDonut(data) {
     return HighCharts.chart('chartDealDonut', {
       chart: {
@@ -264,7 +274,7 @@ export class HomePage {
         // }
 
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -277,29 +287,13 @@ export class HomePage {
         type: 'pie',
         name: 'Browser share',
         innerSize: '50%',
-        data: data
+        data: data.Data
       }]
 
     });
   }
-
-  ionViewDidLoad() {
-    let that = this;
-    //chartDealDonut
-    this.showLoader();
-    that.connectWithAuth('GET', that.getUrl + "Mobile_Deal", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
-      // this.loading.dismiss();
-      // that.chartDealDonutAPI = result;
-      that.chartDealDonut = that.buildchartDealDonut(result);
-      localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
-      // turn off loading
-      this.loading.dismiss();
-    }, (err) => {
-
-      this.presentToast(err);
-    });
-
-    this.chartTotalSales = HighCharts.chart('chartTotalSales', {
+  buildchartTotalSales(data){
+    return HighCharts.chart('chartTotalSales', {
       chart: {
         type: 'solidgauge'
       },
@@ -312,7 +306,7 @@ export class HomePage {
       },
       tooltip: {
         // thêm % sau số liệu khi rê chuột
-        valueSuffix: '%'
+        valueSuffix: ' %/ 200 %'
       },
       yAxis: {
         min: 0,
@@ -366,8 +360,8 @@ export class HomePage {
         data: [{
           radius: '100%',
           innerRadius: '94%',
-          y: 140,
-          x: 39.986
+          y: Math.round(data[0].current),
+          x: Math.round(data[0].currentReal/1000)
         }]
       }, {
         color: '#9A59B5',
@@ -375,13 +369,15 @@ export class HomePage {
         data: [{
           radius: '80%',
           innerRadius: '74%',
-          y: 65,
-          x: 33.996
+          y: Math.round(data[1].current),
+          x: Math.round(data[1].currentReal/1000)
         }]
       }],
 
-    });
-    this.chartTarget = HighCharts.chart('chartTarget', {
+    })
+  }
+  buildchartTarget(data){
+    return HighCharts.chart('chartTarget', {
       chart: {
         type: 'gauge',
         plotBackgroundColor: null,
@@ -471,20 +467,30 @@ export class HomePage {
           for (var i = this.yData.length; i--;) { total += this.yData[i]; };
           //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
           // return '<span style="font-size:16px;">' + 'Now: ' + total + '%/ 200%' + '</span>';
-          return '<span style="font-size:16px; font-weight:normal">' + '39.986 M ' + '</span>' + ' vs ' + '<span style="font-size:16px; font-weight:normal">' + '27.000 M' + '</span>';
+          return '<span style="font-size:16px; font-weight:normal">' + Math.round(data[0].currentReal/1000) + ' M </span>' + ' vs ' + '<span style="font-size:16px; font-weight:normal">' + Math.round(data[0].targetReal/1000) + ' M </span>';
 
         }
       },
       series: [{
         name: 'Target',
-        data: [this.abc],
+        data: [Math.round(data[0].current)],
         tooltip: {
-          valueSuffix: ' /200'
+          valueSuffix: '%/ 200 %'
         }
       }]
 
     });
-    this.chartLastYear = HighCharts.chart('chartLastYear', {
+  }
+  buildchartLastYear(data){
+    let dataDau = [];
+    data.Data_Dau.forEach(element => {
+       dataDau.push(Math.round(element/1000));
+    });
+    let dataSau = [];
+    data.Data_Sau.forEach(element => {
+       dataSau.push(Math.round(element/1000));
+    });
+    return HighCharts.chart('chartLastYear', {
       chart: {
         type: 'areaspline'
       },
@@ -503,20 +509,7 @@ export class HomePage {
         // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
-        categories: [
-          'T4',
-          'T5',
-          'T6',
-          'T7',
-          'T8',
-          'T9',
-          'T10',
-          'T11',
-          'T12',
-          'T1',
-          'T2',
-          'T3'
-        ]
+        categories: data.Category_Date
       },
       yAxis: {
         title: {
@@ -525,7 +518,7 @@ export class HomePage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' K'
+        valueSuffix: ' M'
       },
       credits: {
         enabled: false
@@ -536,16 +529,26 @@ export class HomePage {
         }
       },
       series: [{
-        name: '2016',
-        data: [3, 4, 3, 5, 4, 10, 12, 3, 4, 3, 5, 4],
-        color: '#EDEDED',
+        name: data.Label_Dau,
+        data: dataDau,
+        color: '#EDEDED'
       }, {
-        name: '2017',
+        name: data.Label_Sau,
+        data: dataSau,
         color: '#9BDB80',
-        data: [1, 3, 4, 3, 3, 5, 4, 1, 3, 4, 3, 3]
       }]
     });
-    this.chartLastYear = HighCharts.chart('chartLastYearRevenue', {
+  }
+  buildchartLastYearRevenue(data){
+    let dataDau = [];
+    data.Data_Dau.forEach(element => {
+       dataDau.push(Math.round(element/1000));
+    });
+    let dataSau = [];
+    data.Data_Sau.forEach(element => {
+       dataSau.push(Math.round(element/1000));
+    });
+    return HighCharts.chart('chartLastYearRevenue', {
       chart: {
         type: 'areaspline'
       },
@@ -564,20 +567,7 @@ export class HomePage {
         // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
-        categories: [
-          'T4',
-          'T5',
-          'T6',
-          'T7',
-          'T8',
-          'T9',
-          'T10',
-          'T11',
-          'T12',
-          'T1',
-          'T2',
-          'T3'
-        ]
+        categories: data.Category_Date
       },
       yAxis: {
         title: {
@@ -585,8 +575,10 @@ export class HomePage {
         }
       },
       tooltip: {
+        // Chỗ này để gộp 2 giá trị của 2 chart thành một bảng
         shared: true,
-        valueSuffix: ' K'
+        // Chỗ này thêm đơn vị đằng sau 
+        valueSuffix: ' M'
       },
       credits: {
         enabled: false
@@ -597,16 +589,29 @@ export class HomePage {
         }
       },
       series: [{
-        name: '2016',
-        data: [3, 4, 3, 5, 4, 10, 12, 3, 4, 3, 5, 4],
-        color: '#EDEDED',
+         name: data.Label_Dau,
+        data: dataDau,
+        color: '#EDEDED'
       }, {
-        name: '2017',
-        color: '#9BDB80',
-        data: [1, 3, 4, 3, 3, 5, 4, 1, 3, 4, 3, 3]
+         name: data.Label_Sau,
+        data: dataSau,
+        color: '#9BDB80'   
       }]
     });
-    this.chartService = HighCharts.chart('chartService', {
+  }
+  buildchartService(data){
+    // khai báo giá trị mảng là rỗng thì khi push không bị lỗi
+    let modifydata = [];
+    data.forEach(element => {
+      let commentData = {
+          name: element.Label,
+          y: Math.round(element.SoLuong/1000)
+      };
+    
+      
+      modifydata.push(commentData);
+    });
+    return HighCharts.chart('chartService', {
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -627,9 +632,8 @@ export class HomePage {
         //   return 'The value for <b>' + this.x +
         //     '</b> is <b>' + this.y + '</b>';
         // }
-
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -651,28 +655,21 @@ export class HomePage {
       series: [{
         name: ' ',
         colorByPoint: true,
-        data: [{
-          name: 'Nghiên cứu thị trường',
-          y: 24.03,
-          sliced: true,
-          selected: true
-        }, {
-          name: 'Đào tạo quản lý',
-          y: 10.38
-        }, {
-          name: 'Tư vấn chiến lược',
-          y: 4.77
-        }, {
-          name: 'Tư vấn hệ thông',
-          y: 0.91
-        }, {
-          name: 'Dịch vụ khác',
-          y: 0.2
-        }]
+        data: modifydata
       }]
     });
-    this.chartRegion = HighCharts.chart('chartRegion', {
-
+  }
+  buildchartRegion(data){
+    let modifydata = [];
+    data.forEach(element => {
+      let commentData =  {
+        name: element.Label,
+        y: Math.round(element.SoLuong/1000)
+      };
+    
+      modifydata.push(commentData);
+    });
+    return HighCharts.chart('chartRegion', {
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -688,7 +685,7 @@ export class HomePage {
       },
       tooltip: {
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -711,40 +708,94 @@ export class HomePage {
       series: [{
         name: ' ',
         colorByPoint: true,
-        data: [{
-          name: 'Bình Phước',
-          y: 24.03
-        }, {
-          name: 'Đà Nẵng',
-          y: 10.38
-        }, {
-          name: 'Đồng Tháp',
-          y: 4.77
-        }, {
-          name: 'An Giang',
-          y: 0.91
-        }, {
-          name: 'Long An',
-          y: 0.2
-        }, {
-          name: 'Hà Nội',
-          y: 24.03,
-        }, {
-          name: 'Bến Tre',
-          y: 10.38
-        }, {
-          name: 'Sóc Trăng',
-          y: 4.77
-        }, {
-          name: 'Gia Lai',
-          y: 0.91
-        }, {
-          name: 'Hồ Chí Minh',
-          y: 0.2
-        }]
+        data: modifydata
       }]
 
     });
+  }
+  ionViewDidLoad() {
+    let that = this;
+    //chartDealDonut
+    this.showLoader();
+    that.connectWithAuth('GET', that.getUrl + "Mobile_Deal", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
+      that.chartDealDonut = that.buildchartDealDonut(result);
+      localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
+      that.DealTotal = result.TongSoDeal;
+      // turn off loading
+    }, (err) => {
+        this.presentToast(err);
+    });
+      this.loading.dismiss();
+    //chartTotalSales
+    // get financial year
+    that.connectWithAuth('GET', that.getUrl + "Deal_NamTaiChinhHienTai", { NgayHienTai: that.toDay.toJSON()}, that.token).then((result) => {
+      that.financialYear = new Date(result.ApDungTuNgay);
+      that.financialDayStart = new Date(result.Tu);
+      that.financialDayEnd = new Date(result.Den);
+      // create financial last year.
+      that.financialLastYear =  new Date(new Date(result.Tu).setFullYear(new Date(result.Tu).getFullYear() - 1));
+      that.strFinancialYear = this.financialYear.getFullYear();
+      localStorage.setItem('financialYearStorage', JSON.stringify(result.ApDungTuNgay));
+      this.loading.dismiss();
+      // Draw chart chartTotalSales
+    that.connectWithAuth('GET', that.getUrl + "Report_SaleTotal", { idTarget: that.strFinancialYear }, that.token).then((result) => {
+      localStorage.setItem('chartTotalSalesAPI', JSON.stringify(result));
+      that.SaleTotalHDNow = Math.round(result[0].currentReal/1000);
+       //that.SaleTotalHDTargetNow = Math.round(result[0].currentReal/1000);
+      
+      that.chartTotalSales = that.buildchartTotalSales(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartTotalSales
+      // Draw chart chartTarget
+    that.connectWithAuth('GET', that.getUrl + "Report_SaleVsTarget_Read_Chart_Main", { idTarget: that.strFinancialYear,strLoaiGiaTri:'HopDong' }, that.token).then((result) => {
+      localStorage.setItem('hartTargetAPI', JSON.stringify(result));
+      that.chartTotalSales = that.buildchartTarget(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartTarget
+      // Draw chart chartLastYear
+    that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(),namKetThuc: that.financialDayStart.toJSON(),strLoaiGiaTri:'HopDong' }, that.token).then((result) => {
+      localStorage.setItem('chartLastYearAPI', JSON.stringify(result));
+      that.chartLastYear = that.buildchartLastYear(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartLastYear
+      // Draw chart chartLastYearRevenue
+    that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(),namKetThuc: that.financialDayStart.toJSON(),strLoaiGiaTri:'DoanhThu' }, that.token).then((result) => {
+      localStorage.setItem('chartLastYearRevenueAPI', JSON.stringify(result));
+      that.chartLastYearRevenue = that.buildchartLastYearRevenue(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartLastYearRevenue
+
+      //chartService
+    that.connectWithAuth('GET', that.getUrl + "Report_SaleByService_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
+        // that.chartDealDonutAPI = result;
+        localStorage.setItem('chartService', JSON.stringify(result));
+         that.chartService = that.buildchartService(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartService
+
+      //chartRegion
+      that.connectWithAuth('GET', that.getUrl + "Report_SaleByClientRegion_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON(), strLoai: 'DiaDanh'} , that.token).then((result) => {
+        // that.chartDealDonutAPI = result;
+        localStorage.setItem('chartRegion', JSON.stringify(result));
+         that.chartRegion = that.buildchartRegion(result);
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartRegion
+    }, (err) => {
+      this.presentToast(err);
+    });
+
 
   }
 

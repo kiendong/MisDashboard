@@ -11,15 +11,15 @@
   <ion-grid>
     <ion-row>
       <ng-container *ngFor="let number of numbers">
-        <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-4 id="dealDonut">
+        <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-6 id="dealDonut">
           <ion-row id="dealDonut-header">
             <ion-col col-2 id="icon-1">
               <ion-icon name="ios-locate-outline"></ion-icon>
             </ion-col>
-            <ion-col col-8 id="title">
+            <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  427 deals
+                  {{DealTotal}} deals
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Deals Total (d)
@@ -30,9 +30,6 @@
               <ion-icon name="md-arrow-dropdown" (click)="dealDonut = !dealDonut"></ion-icon>
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
-            <ion-col col-1 id="icon-3">
-
-            </ion-col>
           </ion-row>
           <ion-row id="dealDonut-body" [hidden]="dealDonut">
             <ion-col col-12 col-sm-12>
@@ -40,26 +37,23 @@
             </ion-col>
           </ion-row>
         </ion-col>
-        <ion-col *ngIf="number == chartPositions.chartTotalSales" col-12 col-sm-4 id="totalSale">
+        <ion-col *ngIf="number == chartPositions.chartTotalSales" col-12 col-sm-6 id="totalSale">
           <ion-row id="totalSale-header">
             <ion-col col-2 id="icon-1">
               <ion-icon name="md-pricetags"></ion-icon>
             </ion-col>
-            <ion-col col-8 id="title">
+            <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M
+                  {{SaleTotalHDNow}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
-                  Sales Total (2018)
+                  Sales Total {{strFinancialYear}} 
                 </ion-col>
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
               <ion-icon name="md-arrow-dropdown" (click)="totalSale = !totalSale"></ion-icon>
-            </ion-col>
-            <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
             </ion-col>
           </ion-row>
           <ion-row id="totalSale-body" [hidden]="totalSale">
@@ -68,15 +62,15 @@
             </ion-col>
           </ion-row>
         </ion-col>
-        <ion-col *ngIf="number == chartPositions.chartTarget" col-12 col-sm-4 id="target">
+        <ion-col *ngIf="number == chartPositions.chartTarget" col-12 col-sm-12 id="target">
           <ion-row id="target-header">
-            <ion-col col-2 id="icon-1">
+            <ion-col col-2 col-sm-1 id="icon-1">
               <ion-icon name="ios-locate-outline"></ion-icon>
             </ion-col>
-            <ion-col col-8 id="title">
+            <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M
+                  {{SaleTotalHDNow}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs target
@@ -85,9 +79,6 @@
             </ion-col>
             <ion-col col-1 id="icon-2">
               <ion-icon name="md-arrow-dropdown" (click)="target = !target"></ion-icon>
-            </ion-col>
-            <ion-col col-1 id="icon-3">
-              <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
             </ion-col>
           </ion-row>
           <ion-row id="target-body" [hidden]="target">
@@ -104,7 +95,7 @@
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M vs 33.996 M
+                  {{SaleTotalHDNow}} M vs 33.996 M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year
@@ -213,7 +204,7 @@
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M vs 33.996 M
+                 {{SaleTotalHDNow}} M vs 33.996 M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year
@@ -325,7 +316,7 @@
             <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M
+                  {{SaleTotalHDNow}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales by service
@@ -351,7 +342,7 @@
             <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  39.986 M
+                 {{SaleTotalHDNow}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales by client region
