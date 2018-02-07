@@ -61,6 +61,7 @@ export class HomePage {
   jsonNgayKetThuc = this.ngayKetThuc.toJSON();
   DealTotal:number = 0;
   SaleTotalHDNow:number = 0;
+  SaleTotalHDTarget:numgber = 0;
 
   chartDealDonutAPI: object;
   constructor(public navCtrl: NavController,
@@ -741,7 +742,7 @@ export class HomePage {
     that.connectWithAuth('GET', that.getUrl + "Report_SaleTotal", { idTarget: that.strFinancialYear }, that.token).then((result) => {
       localStorage.setItem('chartTotalSalesAPI', JSON.stringify(result));
       that.SaleTotalHDNow = Math.round(result[0].currentReal/1000);
-       //that.SaleTotalHDTargetNow = Math.round(result[0].currentReal/1000);
+      that.SaleTotalHDTarget = Math.round(result[0].targetReal/1000);
       
       that.chartTotalSales = that.buildchartTotalSales(result);
       }, (err) => {
