@@ -46,13 +46,12 @@
               <ion-col col-12 col-sm-12 id="button">
                 <ion-item style="width:300px; float:right;">
                   <ion-label>Tình trạng</ion-label>
-                  <ion-select [(ngModel)]="status">
-                    <ion-option value="a" selected>Tất cả</ion-option>
-                    <ion-option value="c">Cancelled</ion-option>
-                    <ion-option value="d">Delayed</ion-option>
-                    <ion-option value="l">Lost</ion-option>
-                    <ion-option value="u">Unqualified</ion-option>
-                    <ion-option value="w">Won</ion-option>
+                  <ion-select #C (ionChange)="this.loadChartCall(C.value)">
+                    <ion-option value="0" selected>Tất cả</ion-option>
+                    <ng-container *ngFor="let tinhtrang of TinhTrangClosure">
+
+                      <ion-option value="{{tinhtrang.ID}}">{{tinhtrang.Ten}}</ion-option>
+                    </ng-container>
                   </ion-select>
                 </ion-item>
               </ion-col>

@@ -150,7 +150,7 @@ export class HomePage {
   }
   showLoader() {
     this.loading = this.loadingCtrl.create({
-      content: 'Authenticating...'
+      content: 'Loading API...'
     });
 
     this.loading.present();
@@ -817,6 +817,7 @@ export class HomePage {
         that.ArraySaleDTNow = result.Data_Sau;
         that.SalevsLastYearDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear);
         that.arrayTrendsDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrends;
+
       }, (err) => {
         this.presentToast(err);
       });
@@ -828,6 +829,7 @@ export class HomePage {
         localStorage.setItem('chartService', JSON.stringify(result));
         that.chartService = that.buildchartService(result);
         loadchart++;
+        that.loading.dismiss();
       }, (err) => {
         this.presentToast(err);
       });
@@ -846,8 +848,6 @@ export class HomePage {
     }, (err) => {
       this.presentToast(err);
     });
-
-    that.loading.dismiss();
 
   }
 

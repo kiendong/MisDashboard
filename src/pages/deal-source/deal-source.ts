@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+//API
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { App, LoadingController, ToastController } from 'ionic-angular';
+
+
 /**
  * Generated class for the DealSourcePage page.
  *
@@ -20,11 +26,105 @@ SolidGauge(HighCharts);
 })
 export class DealSourcePage {
   chartSources: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  // login
+  loading: any;
+  isLoggedIn: boolean = false;
+  //API
+  getUrl = 'http://crm.ocd.vn/api/v001/Mobile/';
+  token = '';
+  toDay: Date = new Date();
+  financialYear: Date;
+  financialDayStart: Date;
+  financialDayEnd: Date;
+  financialLastYear: Date;
+  strFinancialYear: number;
+  ArrayFinancialMonth = [];
+  TinhTrangClosure = [];
+  totalDealBD1 = 0;
+  totalDealBD2 = 0;
+  statusSelect = 0;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public app: App,
+    public http: Http,
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) {
+    if (localStorage.getItem("token")) {
+      this.isLoggedIn = true;
+      this.token = localStorage.getItem("token");
+    }
   }
 
-  ionViewDidLoad() {
-    this.chartSources = HighCharts.chart('chartSources', {
+  // API Call function
+  connectWithAuth(pmethod, URL, data, token) {
+    let headers = new Headers({
+      "Data-type": "json",
+      'Content-type': 'application/json;charset=utf-8',
+      'Authorization': 'Bearer ' + token,
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    if (pmethod == "GET") {
+      options.search = data;
+      // return this.http.get(URL, options).map(res => res.json()).toPromise();
+      return new Promise((resolve, reject) => {
+        // We're using Angular HTTP provider to request the data,
+        // then on the response, it'll map the JSON data to a parsed JS object.
+        // Next, we process the data and resolve the promise with the new data.
+        this.http.get(URL, options)
+          .subscribe(data => {
+            // we've got back the raw data, now generate the core schedule data
+            // and save the data for later reference
+            resolve(data.json());
+          }, (err) => {
+            reject(err);
+          });
+      });
+    }
+    else if (pmethod == "POST") {
+      return this.http.post(URL, JSON.stringify(data), options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "PUT") {
+      return this.http.put(URL, data, options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "DELETE") {
+      return this.http.delete(URL, options).map(res => res.json()).toPromise();
+    }
+  }
+  // Logout and loading function
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading API...'
+    });
+
+    this.loading.present();
+  }
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+  buildchartSources(data) {
+    let modifydata = [];
+    data.forEach(element => {
+      let commentData = {
+        name: element.Label,
+        y: Math.round(element.SoLuong)
+      };
+      modifydata.push(commentData);
+    });
+
+    return HighCharts.chart('chartSources', {
+
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -47,7 +147,7 @@ export class DealSourcePage {
         // }
 
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -69,30 +169,76 @@ export class DealSourcePage {
       series: [{
         name: ' ',
         colorByPoint: true,
-        data: [{
-          name: 'Direct Sale',
-          y: 0.7
-        }, {
-          name: 'Current Client',
-          y: 12.18
-        }, {
-          name: 'Consultants',
-          y: 2.58
-        }, {
-          name: 'Our website',
-          y: 49.65
-        }, {
-          name: 'Referral',
-          y: 10.07
-        }, {
-          name: 'Web/Email invitation',
-          y: 11.24
-        }, {
-          name: 'Fan page',
-          y: 2.34
-        }]
+        data: modifydata
+        // [{
+        //   name: 'PCDongThap',
+        //   y: 24.03,
+        //   sliced: true,
+        //   selected: true
+        // }, {
+        //   name: 'Vinalines',
+        //   y: 10.38
+        // }, {
+        //   name: 'EVNHN',
+        //   y: 4.77
+        // }, {
+        //   name: 'BacNinhPC',
+        //   y: 5
+        // }, {
+        //   name: 'RedSun',
+        //   y: 18
+        // }, {
+        //   name: 'PCLongAn',
+        //   y: 0.5
+        // }, {
+        //   name: 'VETC',
+        //   y: 2
+        // }]
       }]
     });
   }
+  loadChartCall(tinhtrang) {
+    let that = this;
+    that.showLoader();
+    // get financial year
+    that.connectWithAuth('GET', that.getUrl + "Deal_NamTaiChinhHienTai", { NgayHienTai: that.toDay.toJSON() }, that.token).then((result) => {
+      that.financialYear = new Date(result.ApDungTuNgay);
 
+      that.financialDayStart = new Date(result.Tu);
+      that.financialDayEnd = new Date(result.Den);
+      // create financial last year.
+      that.financialLastYear = new Date(new Date(result.Tu).setFullYear(new Date(result.Tu).getFullYear() - 1));
+      that.strFinancialYear = this.financialYear.getFullYear();
+
+      // Draw chartSector
+      that.connectWithAuth('GET', that.getUrl + "Report_DealSource_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON(), IDTinhTrang: tinhtrang }, that.token).then((result) => {
+        // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
+        that.chartSources = that.buildchartSources(result);
+        that.ArrayFinancialMonth = result.Category_Date;
+        that.loading.dismiss();
+      }, (err) => {
+        this.presentToast(err);
+      });
+      // End chartSector
+
+
+    }, (err) => {
+      this.presentToast(err);
+    });
+
+
+  }
+  ionViewDidLoad() {
+    let that = this;
+    this.loadChartCall(0);
+    // TinhTrangClosure
+    that.connectWithAuth('GET', that.getUrl + "TinhTrangClosure", {}, that.token).then((result) => {
+      // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
+      that.TinhTrangClosure = result;
+      that.loading.dismiss();
+    }, (err) => {
+      this.presentToast(err);
+    });
+    // End TinhTrangClosure
+  }
 }

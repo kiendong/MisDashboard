@@ -129,24 +129,20 @@
 
                 </ion-row>
               </ion-row>
-              <ion-row id="legend-body" *ngFor="let numberTrends of [0,1,2,3,4,5,6,7,8,9,10,11]">
-                <ng-container>
-                  <ion-row id="legend" *ngIf="arrayTrendsHD[numberTrends] > 0 ">
-                    <ion-col col-12>
-                      <ion-icon name="md-arrow-round-up" style="color : green;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
-                    </ion-col>
-                  </ion-row>
-                  <ion-row id="legend" *ngIf="arrayTrendsHD[numberTrends] < 0">
-                    <ion-col col-12>
-                      <ion-icon name="md-arrow-round-down" style="color : red;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
-                    </ion-col>
-                  </ion-row>
-                  <ion-row id="legend" *ngIf="arrayTrendsHD[numberTrends] == 0">
-                    <ion-col col-12>
-                      <ion-icon name="md-remove" style="color : #E67E22;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
-                    </ion-col>
-                  </ion-row>
+              <ion-row id="legend-body">
+                <ng-container *ngFor="let numberTrends of [0,1,2,3,4,5,6,7,8,9,10,11]">
+                  <ion-col id="legend" *ngIf="arrayTrendsHD[numberTrends] > 0 ">
+                    <ion-icon name="md-arrow-round-up" style="color : green;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
+                  </ion-col>
+                  <ion-col id="legend" *ngIf="arrayTrendsHD[numberTrends] < 0">
+                    <ion-icon name="md-arrow-round-down" style="color : red;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
+                  </ion-col>
+
+                  <ion-col id="legend" *ngIf="arrayTrendsHD[numberTrends] == 0">
+                    <ion-icon name="md-remove" style="color : #E67E22;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
+                  </ion-col>
                 </ng-container>
+
                 <!-- T10 11 12 -->
                 <!-- <ng-container *ngIf="numberTrends > 8">
                   <ion-row id="legend" *ngIf="arrayTrends[numberTrends] > 0">
@@ -209,7 +205,6 @@
                   <ion-col col-12 style=" text-align:center;">
                     <ion-icon name="md-arrow-round-up" style="color : green;"> {{SalevsLastYearDT.totalTrends}}% </ion-icon> - 12T
                   </ion-col>
-
                 </ion-row>
               </ion-row>
               <ion-row id="legend-body" *ngFor="let numberTrends of [0,1,2,3,4,5,6,7,8,9,10,11]">
