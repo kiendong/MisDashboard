@@ -43,8 +43,10 @@ export class TotalSalesPage {
   financialLastYear: Date;
   strFinancialYear: number;
   ArrayFinancialMonth = [];
-  totalDealBD1 = 0;
-  totalDealBD2 = 0;
+  totalSale1 = 0;
+  totalSale2 = 0;
+  totalSale3 = 0;
+  totalSale4 = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
@@ -117,7 +119,7 @@ export class TotalSalesPage {
   }
   buildchartSales(data) {
 
-    debugger;
+    // debugger;
     return HighCharts.chart('chartSales', {
       chart: {
         type: 'area'
@@ -126,15 +128,15 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
+        enabled:false
+        // labelFormatter: function () {
+        //   // Lấy cả số liệu của y và x data
+        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+        // },
 
-        labelFormatter: function () {
-          // Lấy cả số liệu của y và x data
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        },
 
-
-        verticalAlign: 'bottom',
-        backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+        // verticalAlign: 'bottom',
+        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
         categories: [
@@ -160,7 +162,17 @@ export class TotalSalesPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+         formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
+                   '<b>' + element.y+' K</b>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false
@@ -169,19 +181,20 @@ export class TotalSalesPage {
         area: {
           stacking: 'normal',
           lineColor: '#666666',
-          lineWidth: 1,
+           // remove line border
+          lineWidth: 0,
           marker: {
             enabled: false,
             symbol: 'circle',
             radius: 2,
-            states: {
-              hover: {
-                enabled: true
-              }
-            }
+            // states: {
+            //   hover: {
+            //     enabled: false
+            //   }
+            // }
           }
         },
-        showInLegend: true
+        showInLegend: false
       },
 
       series: data
@@ -217,15 +230,15 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
+        enabled:false
+        // labelFormatter: function () {
+        //   // Lấy cả số liệu của y và x data
+        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+        // },
 
-        labelFormatter: function () {
-          // Lấy cả số liệu của y và x data
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        },
 
-
-        verticalAlign: 'bottom',
-        backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+        // verticalAlign: 'bottom',
+        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
         categories: [
@@ -251,7 +264,17 @@ export class TotalSalesPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+         formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
+                   '<b>' + element.y+' K</b>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false
@@ -260,19 +283,20 @@ export class TotalSalesPage {
         area: {
           stacking: 'normal',
           lineColor: '#666666',
-          lineWidth: 1,
+           // remove line border
+          lineWidth: 0,
           marker: {
             enabled: false,
             symbol: 'circle',
             radius: 2,
-            states: {
-              hover: {
-                enabled: true
-              }
-            }
+            // states: {
+            //   hover: {
+            //     enabled: true
+            //   }
+            // }
           }
         },
-        showInLegend: true
+        showInLegend:false
       },
 
       series: data
@@ -308,15 +332,15 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
+        enabled:false
+        // labelFormatter: function () {
+        //   // Lấy cả số liệu của y và x data
+        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+        // },
 
-        labelFormatter: function () {
-          // Lấy cả số liệu của y và x data
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        },
 
-
-        verticalAlign: 'bottom',
-        backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+        // verticalAlign: 'bottom',
+        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
         categories: [
@@ -342,7 +366,17 @@ export class TotalSalesPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+        formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
+                   '<b>' + element.y+' K</b>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false
@@ -351,19 +385,20 @@ export class TotalSalesPage {
         area: {
           stacking: 'normal',
           lineColor: '#666666',
-          lineWidth: 1,
+          // remove line border
+          lineWidth: 0,
           marker: {
             enabled: false,
             symbol: 'circle',
             radius: 2,
-            states: {
-              hover: {
-                enabled: true
-              }
-            }
+            // states: {
+            //   hover: {
+            //     enabled: true
+            //   }
+            // }
           }
         },
-        showInLegend: true
+        showInLegend: false
       },
 
       series: data
@@ -399,15 +434,15 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
+        enabled:false
+        // labelFormatter: function () {
+        //   // Lấy cả số liệu của y và x data
+        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+        // },
 
-        labelFormatter: function () {
-          // Lấy cả số liệu của y và x data
-          return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        },
 
-
-        verticalAlign: 'bottom',
-        backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+        // verticalAlign: 'bottom',
+        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
       },
       xAxis: {
         categories: [
@@ -433,7 +468,17 @@ export class TotalSalesPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+        formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
+                   '<b>' + element.y+' K</b>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false
@@ -442,19 +487,20 @@ export class TotalSalesPage {
         area: {
           stacking: 'normal',
           lineColor: '#666666',
-          lineWidth: 1,
+           // remove line border
+          lineWidth: 0,
           marker: {
             enabled: false,
             symbol: 'circle',
             radius: 2,
-            states: {
-              hover: {
-                enabled: true
-              }
-            }
+            // states: {
+            //   hover: {
+            //     enabled: true
+            //   }
+            // }
           }
         },
-        showInLegend: true
+        showInLegend: false
       },
 
       series: data
@@ -500,11 +546,12 @@ export class TotalSalesPage {
         that.chartSales = that.buildchartSales(result);
         that.ArrayFinancialMonth = result.Category_Date;
         result.forEach(element => {
-          element.data.forEach(elm => {
-            that.totalDealBD1 = that.totalDealBD1 + elm;
+          (element.data).forEach(elm => {
+            that.totalSale1 = that.totalSale1 + elm;
           });
         });
-        that.loading.dismiss();
+         that.totalSale1 = Math.round(that.totalSale1);
+        
       }, (err) => {
         this.presentToast(err);
       });
@@ -516,10 +563,10 @@ export class TotalSalesPage {
         that.ArrayFinancialMonth = result.Category_Date;
         result.forEach(element => {
           element.data.forEach(elm => {
-            that.totalDealBD1 = that.totalDealBD1 + elm;
+            that.totalSale2 = that.totalSale2 + elm;
           });
         });
-        that.loading.dismiss();
+         that.totalSale2 = Math.round(that.totalSale2);
       }, (err) => {
         this.presentToast(err);
       });
@@ -531,10 +578,10 @@ export class TotalSalesPage {
         that.ArrayFinancialMonth = result.Category_Date;
         result.forEach(element => {
           element.data.forEach(elm => {
-            that.totalDealBD1 = that.totalDealBD1 + elm;
+            that.totalSale3 = that.totalSale3 + elm;
           });
         });
-        that.loading.dismiss();
+         that.totalSale3 = Math.round(that.totalSale3);
       }, (err) => {
         this.presentToast(err);
       });
@@ -546,15 +593,15 @@ export class TotalSalesPage {
         that.ArrayFinancialMonth = result.Category_Date;
         result.forEach(element => {
           element.data.forEach(elm => {
-            that.totalDealBD1 = that.totalDealBD1 + elm;
+            that.totalSale4 = that.totalSale4 + elm;
           });
         });
-        that.loading.dismiss();
+         that.totalSale4 = Math.round(that.totalSale4);
       }, (err) => {
         this.presentToast(err);
       });
       // End totalsale BD2 GT
-
+        that.loading.dismiss();
     }, (err) => {
       this.presentToast(err);
     });

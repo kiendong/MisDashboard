@@ -39,8 +39,7 @@ export class DealLossPage {
   financialLastYear: Date;
   strFinancialYear: number;
   ArrayFinancialMonth = [];
-  totalDealBD1 = 0;
-  totalDealBD2 = 0;
+  totalDealLoss = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
@@ -212,6 +211,10 @@ export class DealLossPage {
       that.connectWithAuth('GET', that.getUrl + "Report_DealLossReason_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON() }, that.token).then((result) => {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartReason = that.buildchartReason(result);
+        result.forEach(element => {
+          that.totalDealLoss= that.totalDealLoss + element.SoLuong;
+        });
+       that.totalDealLoss = Math.round(that.totalDealLoss);
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

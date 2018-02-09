@@ -40,8 +40,7 @@ export class DealSourcePage {
   strFinancialYear: number;
   ArrayFinancialMonth = [];
   TinhTrangClosure = [];
-  totalDealBD1 = 0;
-  totalDealBD2 = 0;
+  totalDealsource = 0;
   statusSelect = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -209,11 +208,14 @@ export class DealSourcePage {
       // create financial last year.
       that.financialLastYear = new Date(new Date(result.Tu).setFullYear(new Date(result.Tu).getFullYear() - 1));
       that.strFinancialYear = this.financialYear.getFullYear();
-
       // Draw chartSector
       that.connectWithAuth('GET', that.getUrl + "Report_DealSource_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON(), IDTinhTrang: tinhtrang }, that.token).then((result) => {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartSources = that.buildchartSources(result);
+        result.forEach(element => {
+          that.totalDealsource= that.totalDealsource + element.SoLuong;
+        });
+       that.totalDealsource = Math.round(that.totalDealsource);
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

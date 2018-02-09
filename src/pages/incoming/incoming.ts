@@ -155,7 +155,17 @@ export class IncomingPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+         formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
+                    element.y+ '</span>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false
@@ -248,7 +258,17 @@ export class IncomingPage {
       },
       tooltip: {
         shared: true,
-        valueSuffix: ' '
+        valueSuffix: ' ',
+        formatter: function () {
+            var s = '<b>' + this.x + '</b>';
+            this.points.forEach(element => {
+              if (element.y!=0) {
+                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
+                    element.y+ '</span>';
+              } 
+            });
+            return s;
+        },
       },
       credits: {
         enabled: false

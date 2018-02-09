@@ -38,8 +38,7 @@ export class SourcePage {
   financialLastYear: Date;
   strFinancialYear: number;
   ArrayFinancialMonth = [];
-  totalDealBD1 = 0;
-  totalDealBD2 = 0;
+  totalSector = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
@@ -142,17 +141,17 @@ export class SourcePage {
         //     '</b> is <b>' + this.y + '</b>';
         // }
         formatter: function () {
-          if (this.point.y != 0) {
+          //if (this.point.y != 0) {
             return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
-          }
+         // }
         }
       },
       legend: {
         labelFormatter: function () {
           // Lấy cả số liệu của y và x data
-          if (this.point.y != 0) {
+          //if (this.point.y != 0) {
             return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-          }
+          //}
         }
       },
       plotOptions: {
@@ -216,7 +215,13 @@ export class SourcePage {
       that.connectWithAuth('GET', that.getUrl + "Report_SaleBySource_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON() }, that.token).then((result) => {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartSource = that.buildchartSource(result);
-        debugger;
+        
+        result.forEach(element => {
+
+            that.totalSector = that.totalSector + element.SoLuong;
+   
+        });
+         that.totalSector = Math.round(that.totalSector);
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

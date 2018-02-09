@@ -38,8 +38,7 @@ export class SectorPage {
   financialLastYear: Date;
   strFinancialYear: number;
   ArrayFinancialMonth = [];
-  totalDealBD1 = 0;
-  totalDealBD2 = 0;
+  totalSector = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
@@ -144,7 +143,7 @@ export class SectorPage {
         // }
 
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 2, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, ',', '.') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -213,7 +212,15 @@ export class SectorPage {
       that.connectWithAuth('GET', that.getUrl + "Report_SaleByClientSector_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON() }, that.token).then((result) => {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartSector = that.buildchartSector(result);
+
         that.ArrayFinancialMonth = result.Category_Date;
+        result.forEach(element => {
+
+            that.totalSector = that.totalSector + element.SoLuong;
+   
+        });
+         that.totalSector = Math.round(that.totalSector);
+          
         that.loading.dismiss();
       }, (err) => {
         this.presentToast(err);
