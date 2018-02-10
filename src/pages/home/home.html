@@ -11,10 +11,35 @@
   <ion-grid>
     <ion-row>
       <ng-container *ngFor="let number of numbers">
-        <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-6 id="dealDonut">
-          <ion-row id="dealDonut-header">
-            <ion-col col-2 id="icon-1">
+        <ion-col *ngIf="number == chartPositions.chartTarget" col-12 col-sm-12 id="target">
+          <ion-row id="target-header" (click)="target = !target">
+            <ion-col col-2 col-sm-1 id="icon-1">
               <ion-icon name="ios-locate-outline"></ion-icon>
+            </ion-col>
+            <ion-col col-9 col-sm-10 id="title">
+              <ion-row>
+                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                  {{salesVsTargetTotal}} %
+                </ion-col>
+                <ion-col col-12 style="color:white; font-size: 18px;">
+                  Sales vs target
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-1 id="icon-2">
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="target = !target"></ion-icon> -->
+            </ion-col>
+          </ion-row>
+          <ion-row id="target-body" [hidden]="!target">
+            <ion-col col-12 col-sm-12>
+              <div id="chartTarget" style="display: block;"></div>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col *ngIf="number == chartPositions.chartDealDonut" col-12 col-sm-6 id="dealDonut">
+          <ion-row id="dealDonut-header" (click)="dealDonut = !dealDonut">
+            <ion-col col-2 id="icon-1">
+              <ion-icon name="md-pricetags"></ion-icon>
             </ion-col>
             <ion-col col-9 id="title">
               <ion-row>
@@ -27,75 +52,51 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="dealDonut = !dealDonut"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="dealDonut = !dealDonut"></ion-icon> -->
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="dealDonut-body" [hidden]="dealDonut">
+          <ion-row id="dealDonut-body" [hidden]="!dealDonut">
             <ion-col col-12 col-sm-12>
               <div id="chartDealDonut" style="display: block;"></div>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col *ngIf="number == chartPositions.chartTotalSales" col-12 col-sm-6 id="totalSale">
-          <ion-row id="totalSale-header">
+          <ion-row id="totalSale-header" (click)="totalSale = !totalSale">
             <ion-col col-2 id="icon-1">
-              <ion-icon name="md-pricetags"></ion-icon>
+              <i class="fa fa-pie-chart"></i>
             </ion-col>
             <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M
+                  {{SaleTotalHDNow.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
-                  Sales Total {{strFinancialYear}}
+                  Total sales {{strFinancialYear}}
                 </ion-col>
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="totalSale = !totalSale"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="totalSale = !totalSale"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="totalSale-body" [hidden]="totalSale">
+          <ion-row id="totalSale-body" [hidden]="!totalSale">
             <ion-col col-12 col-sm-12>
               <div id="chartTotalSales" style="display: block;"></div>
             </ion-col>
           </ion-row>
         </ion-col>
-        <ion-col *ngIf="number == chartPositions.chartTarget" col-12 col-sm-12 id="target">
-          <ion-row id="target-header">
-            <ion-col col-2 col-sm-1 id="icon-1">
-              <ion-icon name="ios-locate-outline"></ion-icon>
-            </ion-col>
-            <ion-col col-9 col-sm-10 id="title">
-              <ion-row>
-                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M vs {{SaleTotalHDTarget}} M
-                </ion-col>
-                <ion-col col-12 style="color:white; font-size: 18px;">
-                  Sales vs target
-                </ion-col>
-              </ion-row>
-            </ion-col>
-            <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="target = !target"></ion-icon>
-            </ion-col>
-          </ion-row>
-          <ion-row id="target-body" [hidden]="target">
-            <ion-col col-12 col-sm-12>
-              <div id="chartTarget" style="display: block;"></div>
-            </ion-col>
-          </ion-row>
-        </ion-col>
+
         <ion-col *ngIf="number == chartPositions.chartLastYear" col-12 col-sm-12 id="lastYear">
-          <ion-row id="lastYear-header">
+          <ion-row id="lastYear-header" (click)="lastYear = !lastYear">
             <ion-col col-2 col-sm-1 id="icon-1">
               <i class="fa fa-area-chart"></i>
             </ion-col>
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M vs {{SalevsLastYearHD.TotalLastYear}} M
+                  {{SaleTotalHDNow.toLocaleString()}} M vs {{SaleTotalHDLastYear.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year
@@ -103,15 +104,15 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-3">
-              <ion-icon name="md-arrow-dropdown" (click)="lastYear = !lastYear"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="lastYear = !lastYear"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="lastYear-body" [hidden]="lastYear">
+          <ion-row id="lastYear-body" [hidden]="!lastYear">
             <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
               <ion-row>
                 <ion-col id="label" col-12 col-sm-6>
                   <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
-                    Xem theo giá trị hợp đồng
+                    Total sales (HD)
                   </button>
                 </ion-col>
                 <!-- <ion-col col-12 col-sm-6 id="button">
@@ -138,7 +139,7 @@
                   </ion-col>
 
                   <ion-col col-4 col-sm-12 id="legend" *ngIf="arrayTrendsHD[numberTrends] == 0">
-                    <ion-icon name="md-remove" style="color : #E67E22;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
+                    <ion-icon name="md-arrow-forward" style="color : #E67E22;"> {{arrayTrendsHD[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
                   </ion-col>
                 </ng-container>
               </ion-row>
@@ -147,14 +148,14 @@
           </ion-row>
         </ion-col>
         <ion-col *ngIf="number == chartPositions.chartLastYearRevenue" col-12 col-sm-12 id="lastYearRevenue">
-          <ion-row id="lastYearRevenue-header">
+          <ion-row id="lastYearRevenue-header" (click)="lastYearRevenue = !lastYearRevenue">
             <ion-col col-2 col-sm-1 id="icon-1">
               <i class="fa fa-area-chart"></i>
             </ion-col>
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M vs {{SalevsLastYearDT.TotalLastYear}} M
+                  {{SaleTotalDTNow.toLocaleString()}} M vs {{SaleTotalDTLastYear.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales vs last year
@@ -162,16 +163,16 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="lastYearRevenue = !lastYearRevenue"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="lastYearRevenue = !lastYearRevenue"></ion-icon> -->
             </ion-col>
 
           </ion-row>
-          <ion-row id="lastYearRevenue-body" [hidden]="lastYearRevenue">
+          <ion-row id="lastYearRevenue-body" [hidden]="!lastYearRevenue">
             <ion-col col-12 col-sm-10 col-lg-10 col-xl-11>
               <ion-row>
                 <ion-col id="label" col-12 col-sm-6>
                   <button ion-button style="background-color:white; color:black;text-transform: none; font-size:18px">
-                    Xem theo tổng doanh thu
+                    Revenues (DT)
                   </button>
                 </ion-col>
                 <!-- <ion-col col-12 col-sm-6 id="button">
@@ -208,14 +209,14 @@
           </ion-row>
         </ion-col>
         <ion-col *ngIf="number == chartPositions.chartService" col-12 col-sm-6 id="service">
-          <ion-row id="service-header">
+          <ion-row id="service-header" (click)="service = !service">
             <ion-col col-2 id="icon-1">
               <i class="fa fa-pie-chart"></i>
             </ion-col>
             <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M
+                  {{SaleTotalHDNow.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales by service
@@ -223,25 +224,25 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="service = !service"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="service = !service"></ion-icon> -->
             </ion-col>
 
           </ion-row>
-          <ion-row id="service-body" [hidden]="service">
+          <ion-row id="service-body" [hidden]="!service">
             <ion-col col-12 col-sm-12>
               <div id="chartService" style="display: block;"></div>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col *ngIf="number == chartPositions.chartRegion" col-12 col-sm-6 id="region">
-          <ion-row id="region-header">
+          <ion-row id="region-header" (click)="region = !region">
             <ion-col col-2 id="icon-1">
               <i class="fa fa-pie-chart"></i>
             </ion-col>
             <ion-col col-9 id="title">
               <ion-row>
                 <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
-                  {{SaleTotalHDNow}} M
+                  {{SaleTotalHDNow.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
                   Sales by client region
@@ -249,11 +250,11 @@
               </ion-row>
             </ion-col>
             <ion-col col-1 id="icon-2">
-              <ion-icon name="md-arrow-dropdown" (click)="region = !region"></ion-icon>
+              <!-- <ion-icon name="md-arrow-dropdown" (click)="region = !region"></ion-icon> -->
               <!-- <ion-icon name="md-sync"></ion-icon> -->
             </ion-col>
           </ion-row>
-          <ion-row id="region-body" [hidden]="region">
+          <ion-row id="region-body" [hidden]="!region">
             <ion-col col-12 col-sm-12>
               <div id="chartRegion" style="display: block;"></div>
             </ion-col>

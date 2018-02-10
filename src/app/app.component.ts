@@ -11,6 +11,7 @@ import { SectorPage } from '../pages/sector/sector';
 import { SourcePage } from '../pages/source/source';
 import { DealSourcePage } from '../pages/deal-source/deal-source';
 import { DealLossPage } from '../pages/deal-loss/deal-loss';
+import { SettingPage } from '../pages/setting/setting';
 // login
 import { AuthService } from '../providers/auth-service/auth-service';
 import { App, LoadingController, ToastController } from 'ionic-angular';
@@ -24,12 +25,17 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
 
-   rootPage: any = HomePage;
+  rootPage: any = HomePage;
 
   pages: Array<{ title: string, component: any }>;
   pages2: any;
   loading: any;
   isLoggedIn: boolean = false;
+  userStorage = {
+    sub: '',
+    email: '',
+    profile: ''
+  };
   constructor(public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
@@ -37,6 +43,10 @@ export class MyApp {
     public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
+
+    if (localStorage.getItem("userStorage")) {
+      this.userStorage = JSON.parse(localStorage.getItem("userStorage"));
+    }
     this.initializeApp();
     if (this.platform.is('android')) {
       platform.ready().then(() => {
@@ -78,7 +88,8 @@ export class MyApp {
       sectorPage: SectorPage,
       sourcePage: SourcePage,
       dealSourcePage: DealSourcePage,
-      dealLossPage: DealLossPage
+      dealLossPage: DealLossPage,
+      settingPage: SettingPage
     }
 
   }
@@ -127,6 +138,9 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    if (localStorage.getItem("userStorage")) {
+      this.userStorage = JSON.parse(localStorage.getItem("userStorage"));
+    }
     this.nav.setRoot(page.component);
   }
 }

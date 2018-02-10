@@ -2,21 +2,29 @@ page-setting {
 
 }
 
+page-sector {
+
+}
+// sector
   
-//   .header .col {
-//     background-color:lightgrey;
-//   }
-  
-//   .col {
-//     border: solid 1px grey;
-//     border-bottom-style: none;
-//     border-right-style: none;
-//   }
-  
-//   .col:last-child {
-//     border-right: solid 1px grey;
-//   }
-  
-//   .row:last-child .col {
-//     border-bottom: solid 1px grey;
-//   }
+#sector-header{
+    background: #EAAD77;
+    border: 1px #E67E22;
+    border-radius: 5px;
+  }
+  #sector-header #icon-1{
+    background: #E67E22;
+    border-radius: 5px;
+    text-align: center
+  }
+  #sector-header ion-icon{
+    font-size: 40px;color:white;margin-top:10px
+  }
+  #sector-header i{
+    font-size: 30px;color:white;margin-top:15px
+  }
+  #sector-body{
+    background: white;
+    border-radius: 5px;
+    margin-top: 10px;
+  }

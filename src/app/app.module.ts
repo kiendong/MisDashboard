@@ -14,6 +14,7 @@ import { SectorPage } from '../pages/sector/sector';
 import { SourcePage } from '../pages/source/source';
 import { DealSourcePage } from '../pages/deal-source/deal-source';
 import { DealLossPage } from '../pages/deal-loss/deal-loss';
+import { SettingPage } from '../pages/setting/setting';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +34,8 @@ import { VariableGlobalProvider } from '../providers/variable-global/variable-gl
     SourcePage,
     DealSourcePage,
     DealLossPage,
-    LoginPage
+    LoginPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { VariableGlobalProvider } from '../providers/variable-global/variable-gl
     SourcePage,
     DealSourcePage,
     DealLossPage,
-    LoginPage
+    LoginPage,
+    SettingPage
   ],
   providers: [
     StatusBar,

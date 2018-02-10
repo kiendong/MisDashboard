@@ -128,7 +128,7 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
-        enabled:false
+        enabled: false
         // labelFormatter: function () {
         //   // Lấy cả số liệu của y và x data
         //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
@@ -163,15 +163,15 @@ export class TotalSalesPage {
       tooltip: {
         shared: true,
         valueSuffix: ' ',
-         formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
-                   '<b>' + element.y+' K</b>';
-              } 
-            });
-            return s;
+        formatter: function () {
+          var s = '<b>' + this.x + '</b>';
+          this.points.forEach(element => {
+            if (element.y != 0) {
+              s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>' +
+                '<b>' + element.y + ' K</b>';
+            }
+          });
+          return s;
         },
       },
       credits: {
@@ -181,7 +181,7 @@ export class TotalSalesPage {
         area: {
           stacking: 'normal',
           lineColor: '#666666',
-           // remove line border
+          // remove line border
           lineWidth: 0,
           marker: {
             enabled: false,
@@ -221,108 +221,7 @@ export class TotalSalesPage {
       // }]
     });
   }
-  buildchartSalesBD2HD(data) {
-    return HighCharts.chart('chartSalesBD2HD', {
-      chart: {
-        type: 'area'
-      },
-      title: {
-        text: ' '
-      },
-      legend: {
-        enabled:false
-        // labelFormatter: function () {
-        //   // Lấy cả số liệu của y và x data
-        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        // },
 
-
-        // verticalAlign: 'bottom',
-        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
-      },
-      xAxis: {
-        categories: [
-          'T4',
-          'T5',
-          'T6',
-          'T7',
-          'T8',
-          'T9',
-          'T10',
-          'T11',
-          'T12',
-          'T1',
-          'T2',
-          'T3'
-        ]
-      },
-      yAxis: {
-        // title bên trái
-        title: {
-          text: 'K'
-        }
-      },
-      tooltip: {
-        shared: true,
-        valueSuffix: ' ',
-         formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
-                   '<b>' + element.y+' K</b>';
-              } 
-            });
-            return s;
-        },
-      },
-      credits: {
-        enabled: false
-      },
-      plotOptions: {
-        area: {
-          stacking: 'normal',
-          lineColor: '#666666',
-           // remove line border
-          lineWidth: 0,
-          marker: {
-            enabled: false,
-            symbol: 'circle',
-            radius: 2,
-            // states: {
-            //   hover: {
-            //     enabled: true
-            //   }
-            // }
-          }
-        },
-        showInLegend:false
-      },
-
-      series: data
-      // [{
-      //   name: 'Công ty Điện lực Đồng Tháp ',
-      //   color: '#0CB6B5',
-      //   data: [5964393, 237536, 178800, 3286304, 4603843, 6452665, 972900, 435885, 4395142, 420000, 480000, 490786],
-      // }, {
-      //   name: 'Tập đoàn Điện lực Việt Nam (EVN)',
-      //   color: '#F1654B',
-      //   data: [237536, 435885, 6452665, 435885, 420000, 490786, 237536, 3286304, 972900, 420000, 435885, 490786]
-      // }, {
-      //   name: 'Trung tâm CSKH KV miền Nam (EVNSPC.CC)',
-      //   color: '#46B3D2',
-      //   data: [4603843, 6452665, 972900, 435885, 4395142, 6452665, 435885, 420000, 490786, 237536, 3286304, 972900],
-      // }, {
-      //   name: 'Tổng Công ty Hàng hải Việt nam Vinalines',
-      //   color: '#F78F1E',
-      //   data: [435885, 4395142, 6452665, 435885, 435885, 6452665, 435885, 420000, 490786, 6452665, 972900, 435885]
-      // }, {
-      //   name: 'FIRST-NASATI PMU',
-      //   color: '#1A764E',
-      //   data: [6452665, 435885, 435885, 6452665, 435885, 178800, 3286304, 4603843, 6452665, 972900, 435885, 420000],
-      // }]
-    });
-  }
   buildchartSalesBD1DT(data) {
     return HighCharts.chart('chartSalesBD1DT', {
       chart: {
@@ -332,7 +231,7 @@ export class TotalSalesPage {
         text: ' '
       },
       legend: {
-        enabled:false
+        enabled: false
         // labelFormatter: function () {
         //   // Lấy cả số liệu của y và x data
         //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
@@ -368,14 +267,14 @@ export class TotalSalesPage {
         shared: true,
         valueSuffix: ' ',
         formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
-                   '<b>' + element.y+' K</b>';
-              } 
-            });
-            return s;
+          var s = '<b>' + this.x + '</b>';
+          this.points.forEach(element => {
+            if (element.y != 0) {
+              s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>' +
+                '<b>' + element.y + ' K</b>';
+            }
+          });
+          return s;
         },
       },
       credits: {
@@ -425,108 +324,7 @@ export class TotalSalesPage {
       // }]
     });
   }
-  buildchartSalesBD2DT(data) {
-    return HighCharts.chart('chartSalesBD2DT', {
-      chart: {
-        type: 'area'
-      },
-      title: {
-        text: ' '
-      },
-      legend: {
-        enabled:false
-        // labelFormatter: function () {
-        //   // Lấy cả số liệu của y và x data
-        //   return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
-        // },
 
-
-        // verticalAlign: 'bottom',
-        // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
-      },
-      xAxis: {
-        categories: [
-          'T4',
-          'T5',
-          'T6',
-          'T7',
-          'T8',
-          'T9',
-          'T10',
-          'T11',
-          'T12',
-          'T1',
-          'T2',
-          'T3'
-        ]
-      },
-      yAxis: {
-        // title bên trái
-        title: {
-          text: 'K'
-        }
-      },
-      tooltip: {
-        shared: true,
-        valueSuffix: ' ',
-        formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': </span>'+ 
-                   '<b>' + element.y+' K</b>';
-              } 
-            });
-            return s;
-        },
-      },
-      credits: {
-        enabled: false
-      },
-      plotOptions: {
-        area: {
-          stacking: 'normal',
-          lineColor: '#666666',
-           // remove line border
-          lineWidth: 0,
-          marker: {
-            enabled: false,
-            symbol: 'circle',
-            radius: 2,
-            // states: {
-            //   hover: {
-            //     enabled: true
-            //   }
-            // }
-          }
-        },
-        showInLegend: false
-      },
-
-      series: data
-      // [{
-      //   name: 'Công ty Điện lực Đồng Tháp ',
-      //   color: '#0CB6B5',
-      //   data: [5964393, 237536, 178800, 3286304, 4603843, 6452665, 972900, 435885, 4395142, 420000, 480000, 490786],
-      // }, {
-      //   name: 'Tập đoàn Điện lực Việt Nam (EVN)',
-      //   color: '#F1654B',
-      //   data: [237536, 435885, 6452665, 435885, 420000, 490786, 237536, 3286304, 972900, 420000, 435885, 490786]
-      // }, {
-      //   name: 'Trung tâm CSKH KV miền Nam (EVNSPC.CC)',
-      //   color: '#46B3D2',
-      //   data: [4603843, 6452665, 972900, 435885, 4395142, 6452665, 435885, 420000, 490786, 237536, 3286304, 972900],
-      // }, {
-      //   name: 'Tổng Công ty Hàng hải Việt nam Vinalines',
-      //   color: '#F78F1E',
-      //   data: [435885, 4395142, 6452665, 435885, 435885, 6452665, 435885, 420000, 490786, 6452665, 972900, 435885]
-      // }, {
-      //   name: 'FIRST-NASATI PMU',
-      //   color: '#1A764E',
-      //   data: [6452665, 435885, 435885, 6452665, 435885, 178800, 3286304, 4603843, 6452665, 972900, 435885, 420000],
-      // }]
-    });
-  }
   ionViewDidLoad() {
 
     let that = this;
@@ -550,27 +348,13 @@ export class TotalSalesPage {
             that.totalSale1 = that.totalSale1 + elm;
           });
         });
-         that.totalSale1 = Math.round(that.totalSale1);
-        
+        that.totalSale1 = Math.round(that.totalSale1);
+
       }, (err) => {
         this.presentToast(err);
       });
       // End totalsale BD2 HD
-      // Draw chart totalsale BD1 HD
-      that.connectWithAuth('GET', that.getUrl + "Report_TotalSale_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON(), strBD: 'BD2', strLoaiGiaTri: 'HopDong' }, that.token).then((result) => {
-        localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
-        that.chartSalesBD2HD = that.buildchartSalesBD2HD(result);
-        that.ArrayFinancialMonth = result.Category_Date;
-        result.forEach(element => {
-          element.data.forEach(elm => {
-            that.totalSale2 = that.totalSale2 + elm;
-          });
-        });
-         that.totalSale2 = Math.round(that.totalSale2);
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End totalsale BD1 HD
+
       // Draw chart totalsale BD1 DT
       that.connectWithAuth('GET', that.getUrl + "Report_TotalSale_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON(), strBD: 'BD1', strLoaiGiaTri: 'DoanhThu' }, that.token).then((result) => {
         localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
@@ -581,27 +365,13 @@ export class TotalSalesPage {
             that.totalSale3 = that.totalSale3 + elm;
           });
         });
-         that.totalSale3 = Math.round(that.totalSale3);
+        that.totalSale3 = Math.round(that.totalSale3);
       }, (err) => {
         this.presentToast(err);
       });
       // End totalsale BD1 DT
-      // Draw chart totalsale BD2 DT
-      that.connectWithAuth('GET', that.getUrl + "Report_TotalSale_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON(), strBD: 'BD2', strLoaiGiaTri: 'DoanhThu' }, that.token).then((result) => {
-        localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
-        that.chartSalesBD2DT = that.buildchartSalesBD2DT(result);
-        that.ArrayFinancialMonth = result.Category_Date;
-        result.forEach(element => {
-          element.data.forEach(elm => {
-            that.totalSale4 = that.totalSale4 + elm;
-          });
-        });
-         that.totalSale4 = Math.round(that.totalSale4);
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End totalsale BD2 GT
-        that.loading.dismiss();
+
+      that.loading.dismiss();
     }, (err) => {
       this.presentToast(err);
     });

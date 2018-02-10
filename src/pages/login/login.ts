@@ -24,7 +24,6 @@ export class LoginPage {
       // this.loading.dismiss();
       this.data = result;
       localStorage.setItem('token', this.data.access_token);
-
       let that = this;
       this.authService.loadUser(localStorage.getItem("token")).then((data) => {
         localStorage.setItem('userStorage', JSON.stringify(data));

@@ -20,7 +20,26 @@ export class AuthService {
       params.set('grant_type', 'password');
       params.set('username', credentials.username);
       params.set('password', credentials.password);
-      params.set('scope', 'openid profile roles publicApi mail email all_claims');
+      params.set('scope', 'openid profile roles publicApi mail email all_claims offline_access');
+
+      this.http.post(apiUrl + "identity/connect/token", params, options)
+        .subscribe(res => {
+          resolve(res.json());
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+  refeshToken(credentials) {
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      headers.append('Authorization', 'Basic ' + 'bW9iaWxlOm1vYmlsZW1pc29jZA==');
+      let options = new RequestOptions({ headers: headers });
+      let params = new URLSearchParams();
+      params.set('grant_type', 'refresh_token');
+
+      params.set('refresh_token', '');
 
       this.http.post(apiUrl + "identity/connect/token", params, options)
         .subscribe(res => {
