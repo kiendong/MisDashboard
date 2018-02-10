@@ -16,7 +16,6 @@ import { SettingPage } from '../pages/setting/setting';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { App, LoadingController, ToastController } from 'ionic-angular';
 import { LoginPage } from '../pages/login/login';
-declare var FCMPlugin;
 
 @Component({
   templateUrl: 'app.html'
@@ -32,8 +31,8 @@ export class MyApp {
   loading: any;
   isLoggedIn: boolean = false;
   userStorage = {
-    sub: '',
-    email: '',
+    sub: 'OCD',
+    email: 'ocd@ocd.vn',
     profile: ''
   };
   constructor(public platform: Platform,
@@ -46,34 +45,14 @@ export class MyApp {
 
     if (localStorage.getItem("userStorage")) {
       this.userStorage = JSON.parse(localStorage.getItem("userStorage"));
+    } else {
+      this.userStorage = {
+        sub: 'OCD',
+        email: 'ocd@ocd.vn',
+        profile: ''
+      };
     }
     this.initializeApp();
-    if (this.platform.is('android')) {
-      platform.ready().then(() => {
-        // Okay, so the platform is ready and our plugins are available.
-        // Here you can do any higher level native things you might need.
-
-        FCMPlugin.getToken(
-          (t) => {
-            console.log(t);
-          },
-          (e) => {
-            console.log(e);
-          }
-        );
-
-        FCMPlugin.onNotification(
-          (data) => {
-            console.log(data);
-          },
-          (e) => {
-            console.log(e);
-          }
-        );
-      });
-    }
-
-
     // used for an example of ngFor and navigation
     // this.pages = [
     //   { title: 'Home', component: HomePage },

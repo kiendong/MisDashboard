@@ -3,8 +3,11 @@
     <ion-toolbar>
       <ion-title>
         <ion-row>
-          <ion-col col-5>
+          <ion-col col-5 *ngIf="userStorage.sub !=''">
             <img style="width:100px;height:100px; border-radius:50%;" src="http://hrm.ocd.vn/uploads/avatar/{{userStorage.profile}}.jpg">
+          </ion-col>
+          <ion-col col-5 *ngIf="userStorage.sub ==''">
+            <img style="width:100px;height:100px; border-radius:50%;" src="assets/icon/favicon.png">
           </ion-col>
           <ion-col col-7 style="font-size:18px">
             {{userStorage.sub}}

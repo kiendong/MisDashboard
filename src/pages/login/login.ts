@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
-import { HomePage } from '../home/home';
+import { MyApp } from '../../app/app.component';
 //import { RegisterPage } from '../register/register';
 
 @Component({
@@ -27,7 +27,7 @@ export class LoginPage {
       let that = this;
       this.authService.loadUser(localStorage.getItem("token")).then((data) => {
         localStorage.setItem('userStorage', JSON.stringify(data));
-        that.navCtrl.setRoot(HomePage);
+        that.navCtrl.setRoot(MyApp);
         // load xong hết mới tắt loading
         this.loading.dismiss();
       });

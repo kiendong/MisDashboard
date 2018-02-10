@@ -240,16 +240,17 @@ export class HomePage {
         },
         plotBands: [{
           from: 0,
-          to: 120,
-          color: '#55BF3B' // green
+          to: 70,
+          color: '#DF5353' // red
+
         }, {
-          from: 120,
-          to: 160,
+          from: 70,
+          to: 90,
           color: 'yellow' // yellow
         }, {
-          from: 160,
+          from: 90,
           to: 200,
-          color: '#DF5353' // red
+          color: '#55BF3B' // green
         }]
       },
       plotOptions: {
@@ -358,7 +359,9 @@ export class HomePage {
         }]
       },
       plotOptions: {
+
         series: {
+          colors: ['#F5BB74', '#1EA61C', '#FF040F', '#F46D0C', '#93AAB6'],
           // data label là số ở giữa chart
           dataLabels: {
             enabled: false,

@@ -47,39 +47,32 @@
             <ion-item>
               <ion-icon item-left> Sales vs target</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartTarget" min="1" max="7" type="number" placeholder="Position" name="chartTarget"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> Deals Total</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartDealDonut" name="chartDealDonut" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> Total sales</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartTotalSales" name="chartTotalSales" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> Sales vs last year</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartLastYear" name="chartLastYear" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> revenues vs last year</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartLastYearRevenue" name="chartLastYearRevenue" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> Sales by service</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartService" name="chartService" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
             <ion-item>
               <ion-icon item-left> Sales by client region</ion-icon>
               <ion-input [(ngModel)]="chartPositions.chartRegion" name="chartRegion" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              <ion-icon item-right name="md-checkmark" (click)="setChartPosition(chartPositions)"></ion-icon>
             </ion-item>
-            <button ion-button style="background-color:#32DB64; text-align:center;" type="submit">
+            <button ion-button style="background-color:#32DB64; margin-left:50%;margin-top:20px" type="submit">
               Save
             </button>
           </form>
