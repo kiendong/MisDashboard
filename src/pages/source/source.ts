@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 //API
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -42,12 +43,29 @@ export class SourcePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
+    public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
+    //check login and back to login pages
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
-      this.token = localStorage.getItem("token");
+      let tokenObject = JSON.parse(localStorage.getItem("token"));
+      this.token = tokenObject.access_token;
+      this.RefeshToken(tokenObject).then((result) => {
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
     }
+  }
+  RefeshToken(TokenObject) {
+    return new Promise((resolve, reject) => {
+      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+      }, (err) => {
+        this.presentToast(err);
+      });
+    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {
@@ -142,15 +160,15 @@ export class SourcePage {
         // }
         formatter: function () {
           //if (this.point.y != 0) {
-            return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
-         // }
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          // }
         }
       },
       legend: {
         labelFormatter: function () {
           // Lấy cả số liệu của y và x data
           //if (this.point.y != 0) {
-            return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.name + '</span>';
           //}
         }
       },
@@ -215,13 +233,13 @@ export class SourcePage {
       that.connectWithAuth('GET', that.getUrl + "Report_SaleBySource_Read_Chart", { ngayBatDau: that.financialDayStart.toJSON(), ngayKetThuc: that.financialDayEnd.toJSON() }, that.token).then((result) => {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartSource = that.buildchartSource(result);
-        
+
         result.forEach(element => {
 
-            that.totalSector = that.totalSector + element.SoLuong;
-   
+          that.totalSector = that.totalSector + element.SoLuong;
+
         });
-         that.totalSector = Math.round(that.totalSector);
+        that.totalSector = Math.round(that.totalSector);
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

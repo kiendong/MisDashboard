@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AuthService } from '../../providers/auth-service/auth-service';
 import * as HighCharts from 'highcharts';
 import * as HighchartsMore from 'highcharts/highcharts-more';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
@@ -45,12 +45,28 @@ export class IncomingPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
+    public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
-      this.token = localStorage.getItem("token");
+      let tokenObject = JSON.parse(localStorage.getItem("token"));
+      this.token = tokenObject.access_token;
+      this.RefeshToken(tokenObject).then((result) => {
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
     }
+  }
+  RefeshToken(TokenObject) {
+    return new Promise((resolve, reject) => {
+      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+      }, (err) => {
+        this.presentToast(err);
+      });
+    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {
@@ -156,15 +172,15 @@ export class IncomingPage {
       tooltip: {
         shared: true,
         valueSuffix: ' ',
-         formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
-                    element.y+ '</span>';
-              } 
-            });
-            return s;
+        formatter: function () {
+          var s = '<b>' + this.x + '</b>';
+          this.points.forEach(element => {
+            if (element.y != 0) {
+              s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
+                element.y + '</span>';
+            }
+          });
+          return s;
         },
       },
       credits: {
@@ -172,6 +188,7 @@ export class IncomingPage {
       },
       plotOptions: {
         area: {
+          colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
           stacking: 'normal',
           lineColor: '#666666',
           lineWidth: 1,
@@ -260,20 +277,23 @@ export class IncomingPage {
         shared: true,
         valueSuffix: ' ',
         formatter: function () {
-            var s = '<b>' + this.x + '</b>';
-            this.points.forEach(element => {
-              if (element.y!=0) {
-                 s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
-                    element.y+ '</span>';
-              } 
-            });
-            return s;
+          var s = '<b>' + this.x + '</b>';
+          this.points.forEach(element => {
+            if (element.y != 0) {
+              s += '<br/>' + '<span style = "font-size:16px; font-weight: normal">' + element.series.name + ': ' +
+                element.y + '</span>';
+            }
+          });
+          return s;
         },
       },
       credits: {
         enabled: false
       },
       plotOptions: {
+        series: {
+          colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+        },
         area: {
           stacking: 'normal',
           lineColor: '#666666',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AuthService } from '../../providers/auth-service/auth-service';
 import * as HighCharts from 'highcharts';
 import * as HighchartsMore from 'highcharts/highcharts-more';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
@@ -51,12 +51,29 @@ export class TotalSalesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
+    public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
+    //check login and back to login pages
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
-      this.token = localStorage.getItem("token");
+      let tokenObject = JSON.parse(localStorage.getItem("token"));
+      this.token = tokenObject.access_token;
+      this.RefeshToken(tokenObject).then((result) => {
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
     }
+  }
+  RefeshToken(TokenObject) {
+    return new Promise((resolve, reject) => {
+      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+      }, (err) => {
+        this.presentToast(err);
+      });
+    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {

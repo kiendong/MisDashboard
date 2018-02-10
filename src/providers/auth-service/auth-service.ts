@@ -30,7 +30,7 @@ export class AuthService {
         });
     });
   }
-  refeshToken(credentials) {
+  refeshToken(refeshToken) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -38,9 +38,7 @@ export class AuthService {
       let options = new RequestOptions({ headers: headers });
       let params = new URLSearchParams();
       params.set('grant_type', 'refresh_token');
-
-      params.set('refresh_token', '');
-
+      params.set('refresh_token', refeshToken);
       this.http.post(apiUrl + "identity/connect/token", params, options)
         .subscribe(res => {
           resolve(res.json());

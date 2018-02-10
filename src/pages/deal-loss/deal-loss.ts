@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 //API
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -43,12 +44,28 @@ export class DealLossPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public app: App,
     public http: Http,
+    public authService: AuthService,
     public loadingCtrl: LoadingController,
     private toastCtrl: ToastController) {
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
-      this.token = localStorage.getItem("token");
+      let tokenObject = JSON.parse(localStorage.getItem("token"));
+      this.token = tokenObject.access_token;
+      this.RefeshToken(tokenObject).then((result) => {
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
     }
+  }
+  RefeshToken(TokenObject) {
+    return new Promise((resolve, reject) => {
+      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+      }, (err) => {
+        this.presentToast(err);
+      });
+    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {
@@ -212,9 +229,9 @@ export class DealLossPage {
         // localStorage.setItem('chartIncomingAPI', JSON.stringify(result));
         that.chartReason = that.buildchartReason(result);
         result.forEach(element => {
-          that.totalDealLoss= that.totalDealLoss + element.SoLuong;
+          that.totalDealLoss = that.totalDealLoss + element.SoLuong;
         });
-       that.totalDealLoss = Math.round(that.totalDealLoss);
+        that.totalDealLoss = Math.round(that.totalDealLoss);
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

@@ -23,9 +23,10 @@ export class LoginPage {
     this.authService.login(this.loginData).then((result) => {
       // this.loading.dismiss();
       this.data = result;
-      localStorage.setItem('token', this.data.access_token);
+      localStorage.setItem('token', JSON.stringify(this.data));
+      let token = JSON.parse(localStorage.getItem("token")).access_token;
       let that = this;
-      this.authService.loadUser(localStorage.getItem("token")).then((data) => {
+      this.authService.loadUser(token).then((data) => {
         localStorage.setItem('userStorage', JSON.stringify(data));
         that.navCtrl.setRoot(MyApp);
         // load xong hết mới tắt loading

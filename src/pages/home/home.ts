@@ -75,6 +75,8 @@ export class HomePage {
   SalevsLastYearDT = {};
   arrayTrendsHD = [];
   arrayTrendsDT = [];
+  arrayTrendsHDABS = [];
+  arrayTrendsDTABS = [];
   salesVsTargetTotal = 0;
   constructor(public navCtrl: NavController,
     public app: App,
@@ -85,7 +87,13 @@ export class HomePage {
     //check login and back to login pages
     if (localStorage.getItem("token")) {
       this.isLoggedIn = true;
-      this.token = localStorage.getItem("token");
+      let tokenObject = JSON.parse(localStorage.getItem("token"));
+      this.token = tokenObject.access_token;
+      this.RefeshToken(tokenObject).then((result) => {
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
     }
     // check and redirect to login page
     if (!localStorage.getItem("token")) {
@@ -93,13 +101,8 @@ export class HomePage {
     }
     this.connectWithAuth('GET', this.getUrl + "Mobile_Deal", { ngayBatDau: this.ngayBatDau.toJSON(), ngayKetThuc: this.ngayKetThuc.toJSON() }, this.token).then((result) => {
       if (result == null) {
-        localStorage.clear();
         navCtrl.setRoot(LoginPage);
       }
-      this.chartDealDonut = this.buildchartDealDonut(result);
-
-      localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
-      this.DealTotal = result.TongSoDeal;
     }, (err) => {
       this.presentToast(err);
     });
@@ -116,6 +119,15 @@ export class HomePage {
       this.chartPositions = JSON.parse(localStorage.getItem("chartPositions"));
     }
 
+  }
+  RefeshToken(TokenObject) {
+    return new Promise((resolve, reject) => {
+      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+      }, (err) => {
+        this.presentToast(err);
+      });
+    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {
@@ -359,7 +371,6 @@ export class HomePage {
         }]
       },
       plotOptions: {
-
         series: {
           colors: ['#F5BB74', '#1EA61C', '#FF040F', '#F46D0C', '#93AAB6'],
           // data label là số ở giữa chart
@@ -721,6 +732,7 @@ export class HomePage {
       TotalSale: 0,
       TotalLastYear: 0,
       arrayTrends: [],
+      arrayTrendsABS: [],
       totalTrends: 0
     };
     sale.forEach(element => {
@@ -735,9 +747,11 @@ export class HomePage {
     for (let i = 0; i < sale.length; i++) {
       if (sale[i] - lastYear[i] == 0 || sale[i] == 0) {
         SalevsLastYear.arrayTrends.push(0);
+        SalevsLastYear.arrayTrendsABS.push(0);
       } else {
         let numberTrends = ((sale[i] - lastYear[i]) / sale[i]) * 100;
         SalevsLastYear.arrayTrends.push(Math.round(numberTrends));
+        SalevsLastYear.arrayTrendsABS.push(Math.abs(Math.round(numberTrends)));
       }
     }
     SalevsLastYear.totalTrends = Math.round(((SalevsLastYear.TotalSale - SalevsLastYear.TotalLastYear) / SalevsLastYear.TotalSale) * 100);
@@ -748,6 +762,7 @@ export class HomePage {
       TotalSale: 0,
       TotalLastYear: 0,
       arrayTrends: [],
+      arrayTrendsABS: [],
       totalTrends: 0
     };
     sale.forEach(element => {
@@ -761,9 +776,11 @@ export class HomePage {
     for (let i = 0; i < sale.length; i++) {
       if (sale[i] - lastYear[i] == 0 || sale[i] == 0) {
         SalevsLastYear.arrayTrends.push(0);
+        SalevsLastYear.arrayTrendsABS.push(0);
       } else {
         let numberTrends = ((sale[i] - lastYear[i]) / sale[i]) * 100;
         SalevsLastYear.arrayTrends.push(Math.round(numberTrends));
+        SalevsLastYear.arrayTrendsABS.push(Math.abs(Math.round(numberTrends)));
       }
     }
     SalevsLastYear.totalTrends = Math.round(((SalevsLastYear.TotalSale - SalevsLastYear.TotalLastYear) / SalevsLastYear.TotalSale) * 100);
@@ -829,6 +846,7 @@ export class HomePage {
         that.ArraySaleHDNow = result.Data_Sau;
         that.SalevsLastYearHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear);
         that.arrayTrendsHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrends;
+        that.arrayTrendsHDABS = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrendsABS;
         that.ArrayFinancialMonth = result.Category_Date;
       }, (err) => {
         this.presentToast(err);
@@ -843,6 +861,7 @@ export class HomePage {
         that.ArraySaleDTNow = result.Data_Sau;
         that.SalevsLastYearDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear);
         that.arrayTrendsDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrends;
+        that.arrayTrendsDTABS = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrendsABS;
         result.Data_Dau.forEach(element => {
           that.SaleTotalDTLastYear = that.SaleTotalDTLastYear + element;
         });
