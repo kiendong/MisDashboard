@@ -7,7 +7,8 @@ import { App, LoadingController, ToastController } from 'ionic-angular';
 import * as HighCharts from 'highcharts';
 import * as HighchartsMore from 'highcharts/highcharts-more';
 import * as SolidGauge from 'highcharts/modules/solid-gauge';
-
+import Exporting from "highcharts/modules/exporting";
+Exporting(HighCharts);
 import { LoginPage } from '../login/login';
 HighchartsMore(HighCharts);
 SolidGauge(HighCharts);
@@ -89,23 +90,152 @@ export class HomePage {
       this.isLoggedIn = true;
       let tokenObject = JSON.parse(localStorage.getItem("token"));
       this.token = tokenObject.access_token;
-      this.RefeshToken(tokenObject).then((result) => {
+
+      authService.refeshToken(tokenObject.refresh_token).then((result) => {
+        localStorage.setItem('token', JSON.stringify(result));
+        this.isLoggedIn = true;
+        let tokenObject = JSON.parse(localStorage.getItem("token"));
+        this.token = tokenObject.access_token;
+        let that = this;
+        // temp loading 
+        let loadchart = 0
+        that.showLoader();
+        //chartTotalSales
+        // get financial year
+        that.connectWithAuth('GET', that.getUrl + "Deal_NamTaiChinhHienTai", { NgayHienTai: that.toDay.toJSON() }, that.token).then((result) => {
+
+          that.financialYear = new Date(result.ApDungTuNgay);
+          that.financialDayStart = new Date(result.Tu);
+          that.financialDayEnd = new Date(result.Den);
+          // create financial last year.
+          that.financialLastYear = new Date(new Date(result.Tu).setFullYear(new Date(result.Tu).getFullYear() - 1));
+          that.strFinancialYear = this.financialYear.getFullYear();
+          localStorage.setItem('financialYearStorage', JSON.stringify(result.ApDungTuNgay));
+          //chartDealDonut
+          that.connectWithAuth('GET', that.getUrl + "Mobile_Deal", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
+            that.chartDealDonut = that.buildchartDealDonut(result);
+
+            localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
+            that.DealTotal = result.TongSoDeal;
+            loadchart = loadchart + 1;
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // Draw chart chartTotalSales
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleTotal", { idTarget: that.strFinancialYear }, that.token).then((result) => {
+
+            localStorage.setItem('chartTotalSalesAPI', JSON.stringify(result));
+            that.SaleTotalHDNow = Math.round((result[0].currentReal / 1000) * 100) / 100;
+            that.SaleTotalHDTarget = Math.round((result[0].targetReal / 1000) * 100) / 100;
+            that.chartTotalSales = that.buildchartTotalSales(result);
+            loadchart++;
+
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartTotalSales
+          // Draw chart chartTarget
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleVsTarget_Read_Chart_Main", { idTarget: that.strFinancialYear, strLoaiGiaTri: 'HopDong' }, that.token).then((result) => {
+            // debugger;
+            localStorage.setItem('chartTargetAPI', JSON.stringify(result));
+            that.chartTotalSales = that.buildchartTarget(result);
+            that.salesVsTargetTotal = Math.round(result[0].current);
+            loadchart++;
+
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartTarget
+          // Draw chart chartLastYear
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(), namKetThuc: that.financialDayStart.toJSON(), strLoaiGiaTri: 'HopDong' }, that.token).then((result) => {
+
+            localStorage.setItem('chartLastYearAPI', JSON.stringify(result));
+            that.chartLastYear = that.buildchartLastYear(result);
+            that.ArraySaleHDLastYear = result.Data_Dau;
+            that.ArraySaleHDNow = result.Data_Sau;
+            that.SalevsLastYearHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear);
+            that.arrayTrendsHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrends;
+            that.arrayTrendsHDABS = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrendsABS;
+            that.ArrayFinancialMonth = result.Category_Date;
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartLastYear
+          // Draw chart chartLastYearRevenue
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(), namKetThuc: that.financialDayStart.toJSON(), strLoaiGiaTri: 'DoanhThu' }, that.token).then((result) => {
+
+            localStorage.setItem('chartLastYearRevenueAPI', JSON.stringify(result));
+            that.chartLastYearRevenue = that.buildchartLastYearRevenue(result);
+            that.ArraySaleDTLastYear = result.Data_Dau;
+            that.ArraySaleDTNow = result.Data_Sau;
+            that.SalevsLastYearDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear);
+            that.arrayTrendsDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrends;
+            that.arrayTrendsDTABS = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrendsABS;
+            result.Data_Dau.forEach(element => {
+              that.SaleTotalDTLastYear = that.SaleTotalDTLastYear + element;
+            });
+            that.SaleTotalDTLastYear = Math.round((that.SaleTotalDTLastYear / 1000) * 100) / 100;
+            result.Data_Sau.forEach(element => {
+
+              that.SaleTotalDTNow = that.SaleTotalDTNow + element;
+
+            });
+            that.SaleTotalDTNow = Math.round((that.SaleTotalDTNow / 1000) * 100) / 100;
+            // SaleTotalDTLastYear = 0;
+            // SaleTotalDTNow = 0
+            that.loading.dismiss();
+
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartLastYearRevenue
+
+          //chartService
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleByService_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
+
+            // that.chartDealDonutAPI = result;
+            localStorage.setItem('chartService', JSON.stringify(result));
+            that.chartService = that.buildchartService(result);
+            loadchart++;
+
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartService
+
+          //chartRegion
+          that.connectWithAuth('GET', that.getUrl + "Report_SaleByClientRegion_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON(), strLoai: 'DiaDanh' }, that.token).then((result) => {
+            // that.chartDealDonutAPI = result;
+
+            localStorage.setItem('chartRegion', JSON.stringify(result));
+            that.chartRegion = that.buildchartRegion(result);
+            loadchart++;
+
+          }, (err) => {
+            this.presentToast(err);
+          });
+          // End chartRegion
+        }, (err) => {
+          this.navCtrl.setRoot(LoginPage);
+          this.presentToast(err);
+        });
+        that.loading.dismiss();
+
       }, (err) => {
-        this.loading.dismiss();
-        this.presentToast(err);
+        navCtrl.setRoot('LoginPage');
       });
+      // this.RefeshToken(tokenObject).then((result) => {
+
+      //   debugger;
+
+      // }, (err) => {
+      //   debugger;
+      // });
     }
     // check and redirect to login page
     if (!localStorage.getItem("token")) {
       navCtrl.setRoot(LoginPage);
     }
-    this.connectWithAuth('GET', this.getUrl + "Mobile_Deal", { ngayBatDau: this.ngayBatDau.toJSON(), ngayKetThuc: this.ngayKetThuc.toJSON() }, this.token).then((result) => {
-      if (result == null) {
-        navCtrl.setRoot(LoginPage);
-      }
-    }, (err) => {
-      this.presentToast(err);
-    });
 
     // API chart call
     let Params = new HttpParams();
@@ -119,15 +249,6 @@ export class HomePage {
       this.chartPositions = JSON.parse(localStorage.getItem("chartPositions"));
     }
 
-  }
-  RefeshToken(TokenObject) {
-    return new Promise((resolve, reject) => {
-      this.authService.refeshToken(TokenObject.refresh_token).then((result) => {
-        localStorage.setItem('token', JSON.stringify(result));
-      }, (err) => {
-        this.presentToast(err);
-      });
-    });
   }
   // API Call function
   connectWithAuth(pmethod, URL, data, token) {
@@ -291,13 +412,13 @@ export class HomePage {
           for (var i = this.yData.length; i--;) { total += this.yData[i]; };
           //return '<span style="font-size:12px;">' + this.name + ': ' + total + '% - ' + total1 + '</span>';
           // return '<span style="font-size:16px;">' + 'Now: ' + total + '%/ 200%' + '</span>';
-          return '<span style="font-size:16px; font-weight:normal">' + Math.round(data[0].currentReal / 1000) + ' M </span>' + ' vs ' + '<span style="font-size:16px; font-weight:normal">' + Math.round(data[0].targetReal / 1000) + ' M </span>';
+          return '<span style="font-size:16px; font-weight:normal">' + (Math.round((data[0].currentReal / 1000) * 100) / 100).toLocaleString() + ' M </span>' + ' vs ' + '<span style="font-size:16px; font-weight:normal">' + (Math.round((data[0].targetReal / 1000) * 100) / 100).toLocaleString() + ' M </span>';
 
         }
       },
       series: [{
         name: 'Target',
-        data: [Math.round(data[0].current)],
+        data: [Math.round((data[0].current) * 100) / 100],
         tooltip: {
           valueSuffix: '%/ 200 %'
         }
@@ -466,7 +587,7 @@ export class HomePage {
           innerRadius: '96%',
           backgroundColor: '#63CC32',
           borderWidth: 0,
-          dashStyle: 'longdashdot'
+          dashStyle: 'dashdot'
         }, { // Track for Exercise
           outerRadius: '78%',
           innerRadius: '76%',
@@ -481,8 +602,8 @@ export class HomePage {
         data: [{
           radius: '100%',
           innerRadius: '94%',
-          y: Math.round(data[0].current),
-          x: Math.round(data[0].currentReal / 1000)
+          y: Math.round((data[0].current) * 100) / 100,
+          x: (Math.round((data[0].currentReal / 1000) * 100) / 100).toLocaleString()
         }]
       }, {
         color: '#9A59B5',
@@ -490,8 +611,8 @@ export class HomePage {
         data: [{
           radius: '80%',
           innerRadius: '74%',
-          y: Math.round(data[1].current),
-          x: Math.round(data[1].currentReal / 1000)
+          y: Math.round((data[1].current) * 100) / 100,
+          x: (Math.round((data[1].currentReal / 1000) * 100) / 100).toLocaleString()
         }]
       }],
 
@@ -499,12 +620,15 @@ export class HomePage {
   }
   buildchartLastYear(data) {
     let dataDau = [];
+
     data.Data_Dau.forEach(element => {
-      dataDau.push(Math.round(element / 1000));
+      let d = element / 1000;
+      dataDau.push(Math.round(d * 100) / 100);
     });
     let dataSau = [];
     data.Data_Sau.forEach(element => {
-      dataSau.push(Math.round(element / 1000));
+      let d = element / 1000;
+      dataSau.push(Math.round(d * 100) / 100);
     });
     return HighCharts.chart('chartLastYear', {
       chart: {
@@ -512,6 +636,9 @@ export class HomePage {
       },
       title: {
         text: ' '
+      },
+      exporting: {
+        enabled: false
       },
       legend: {
         enabled: false
@@ -558,11 +685,11 @@ export class HomePage {
   buildchartLastYearRevenue(data) {
     let dataDau = [];
     data.Data_Dau.forEach(element => {
-      dataDau.push(Math.round(element / 1000));
+      dataDau.push(Math.round((element / 1000) * 100) / 100);
     });
     let dataSau = [];
     data.Data_Sau.forEach(element => {
-      dataSau.push(Math.round(element / 1000));
+      dataSau.push(Math.round((element / 1000) * 100) / 100);
     });
     return HighCharts.chart('chartLastYearRevenue', {
       chart: {
@@ -581,6 +708,9 @@ export class HomePage {
         // floating: true,
         // borderWidth: 1,
         // backgroundColor: (HighCharts.theme && HighCharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      exporting: {
+        enabled: false
       },
       xAxis: {
         categories: data.Category_Date
@@ -621,7 +751,7 @@ export class HomePage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong / 1000)
+        y: Math.round((element.SoLuong / 1000) * 100) / 100
       };
       modifydata.push(commentData);
     });
@@ -647,7 +777,7 @@ export class HomePage {
         //     '</b> is <b>' + this.y + '</b>';
         // }
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, ',', '.') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -678,7 +808,7 @@ export class HomePage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong / 1000)
+        y: Math.round((element.SoLuong / 1000) * 100) / 100
       };
 
       modifydata.push(commentData);
@@ -699,7 +829,7 @@ export class HomePage {
       },
       tooltip: {
         enabled: true, formatter: function () {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, ',', '.') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
         }
       },
       legend: {
@@ -741,8 +871,8 @@ export class HomePage {
     lastYear.forEach(element => {
       SalevsLastYear.TotalLastYear = SalevsLastYear.TotalLastYear + element;
     });
-    SalevsLastYear.TotalSale = Math.round(SalevsLastYear.TotalSale / 1000);
-    SalevsLastYear.TotalLastYear = Math.round(SalevsLastYear.TotalLastYear / 1000);
+    SalevsLastYear.TotalSale = Math.round((SalevsLastYear.TotalSale / 1000) * 100) / 100;
+    SalevsLastYear.TotalLastYear = Math.round((SalevsLastYear.TotalLastYear / 1000) * 100) / 100;
     this.SaleTotalHDLastYear = SalevsLastYear.TotalLastYear;
     for (let i = 0; i < sale.length; i++) {
       if (sale[i] - lastYear[i] == 0 || sale[i] == 0) {
@@ -754,7 +884,7 @@ export class HomePage {
         SalevsLastYear.arrayTrendsABS.push(Math.abs(Math.round(numberTrends)));
       }
     }
-    SalevsLastYear.totalTrends = Math.round(((SalevsLastYear.TotalSale - SalevsLastYear.TotalLastYear) / SalevsLastYear.TotalSale) * 100);
+    SalevsLastYear.totalTrends = Math.round((((SalevsLastYear.TotalSale - SalevsLastYear.TotalLastYear) / SalevsLastYear.TotalSale) * 100));
     return SalevsLastYear;
   }
   modifySalevsLastYearDT(sale, lastYear) {
@@ -771,8 +901,8 @@ export class HomePage {
     lastYear.forEach(element => {
       SalevsLastYear.TotalLastYear = SalevsLastYear.TotalLastYear + element;
     });
-    SalevsLastYear.TotalSale = Math.round(SalevsLastYear.TotalSale / 1000);
-    SalevsLastYear.TotalLastYear = Math.round(SalevsLastYear.TotalLastYear / 1000);
+    SalevsLastYear.TotalSale = Math.round((SalevsLastYear.TotalSale / 1000) * 100) / 100;
+    SalevsLastYear.TotalLastYear = Math.round((SalevsLastYear.TotalLastYear / 1000) * 100) / 100;
     for (let i = 0; i < sale.length; i++) {
       if (sale[i] - lastYear[i] == 0 || sale[i] == 0) {
         SalevsLastYear.arrayTrends.push(0);
@@ -786,131 +916,6 @@ export class HomePage {
     SalevsLastYear.totalTrends = Math.round(((SalevsLastYear.TotalSale - SalevsLastYear.TotalLastYear) / SalevsLastYear.TotalSale) * 100);
     return SalevsLastYear;
   }
-  ionViewDidLoad() {
-    let that = this;
-    // temp loading 
-    let loadchart = 0
-    that.showLoader();
-    //chartTotalSales
-    // get financial year
-    that.connectWithAuth('GET', that.getUrl + "Deal_NamTaiChinhHienTai", { NgayHienTai: that.toDay.toJSON() }, that.token).then((result) => {
-
-      that.financialYear = new Date(result.ApDungTuNgay);
-      that.financialDayStart = new Date(result.Tu);
-      that.financialDayEnd = new Date(result.Den);
-      // create financial last year.
-      that.financialLastYear = new Date(new Date(result.Tu).setFullYear(new Date(result.Tu).getFullYear() - 1));
-      that.strFinancialYear = this.financialYear.getFullYear();
-      localStorage.setItem('financialYearStorage', JSON.stringify(result.ApDungTuNgay));
-      //chartDealDonut
-      that.connectWithAuth('GET', that.getUrl + "Mobile_Deal", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
-        that.chartDealDonut = that.buildchartDealDonut(result);
-
-        localStorage.setItem('chartDealDonutAPI', JSON.stringify(result));
-        that.DealTotal = result.TongSoDeal;
-        loadchart = loadchart + 1;
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // Draw chart chartTotalSales
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleTotal", { idTarget: that.strFinancialYear }, that.token).then((result) => {
-
-        localStorage.setItem('chartTotalSalesAPI', JSON.stringify(result));
-        that.SaleTotalHDNow = Math.round(result[0].currentReal / 1000);
-        that.SaleTotalHDTarget = Math.round(result[0].targetReal / 1000);
-        that.chartTotalSales = that.buildchartTotalSales(result);
-        loadchart++;
-
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartTotalSales
-      // Draw chart chartTarget
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleVsTarget_Read_Chart_Main", { idTarget: that.strFinancialYear, strLoaiGiaTri: 'HopDong' }, that.token).then((result) => {
-        // debugger;
-        localStorage.setItem('chartTargetAPI', JSON.stringify(result));
-        that.chartTotalSales = that.buildchartTarget(result);
-        that.salesVsTargetTotal = Math.round(result[0].current);
-        loadchart++;
-
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartTarget
-      // Draw chart chartLastYear
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(), namKetThuc: that.financialDayStart.toJSON(), strLoaiGiaTri: 'HopDong' }, that.token).then((result) => {
-
-        localStorage.setItem('chartLastYearAPI', JSON.stringify(result));
-        that.chartLastYear = that.buildchartLastYear(result);
-        that.ArraySaleHDLastYear = result.Data_Dau;
-        that.ArraySaleHDNow = result.Data_Sau;
-        that.SalevsLastYearHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear);
-        that.arrayTrendsHD = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrends;
-        that.arrayTrendsHDABS = that.modifySalevsLastYearHD(that.ArraySaleHDNow, that.ArraySaleHDLastYear).arrayTrendsABS;
-        that.ArrayFinancialMonth = result.Category_Date;
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartLastYear
-      // Draw chart chartLastYearRevenue
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleVsLastYear_Read_Chart_Detail", { namBatDau: that.financialLastYear.toJSON(), namKetThuc: that.financialDayStart.toJSON(), strLoaiGiaTri: 'DoanhThu' }, that.token).then((result) => {
-
-        localStorage.setItem('chartLastYearRevenueAPI', JSON.stringify(result));
-        that.chartLastYearRevenue = that.buildchartLastYearRevenue(result);
-        that.ArraySaleDTLastYear = result.Data_Dau;
-        that.ArraySaleDTNow = result.Data_Sau;
-        that.SalevsLastYearDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear);
-        that.arrayTrendsDT = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrends;
-        that.arrayTrendsDTABS = that.modifySalevsLastYearDT(that.ArraySaleDTNow, that.ArraySaleDTLastYear).arrayTrendsABS;
-        result.Data_Dau.forEach(element => {
-          that.SaleTotalDTLastYear = that.SaleTotalDTLastYear + element;
-        });
-        that.SaleTotalDTLastYear = Math.round(that.SaleTotalDTLastYear / 1000);
-        result.Data_Sau.forEach(element => {
-
-          that.SaleTotalDTNow = that.SaleTotalDTNow + element;
-
-        });
-        that.SaleTotalDTNow = Math.round(that.SaleTotalDTNow / 1000);
-        // SaleTotalDTLastYear = 0;
-        // SaleTotalDTNow = 0
-        that.loading.dismiss();
-
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartLastYearRevenue
-
-      //chartService
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleByService_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON() }, that.token).then((result) => {
-
-        // that.chartDealDonutAPI = result;
-        localStorage.setItem('chartService', JSON.stringify(result));
-        that.chartService = that.buildchartService(result);
-        loadchart++;
-
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartService
-
-      //chartRegion
-      that.connectWithAuth('GET', that.getUrl + "Report_SaleByClientRegion_Read_Chart", { ngayBatDau: that.ngayBatDau.toJSON(), ngayKetThuc: that.ngayKetThuc.toJSON(), strLoai: 'DiaDanh' }, that.token).then((result) => {
-        // that.chartDealDonutAPI = result;
-
-        localStorage.setItem('chartRegion', JSON.stringify(result));
-        that.chartRegion = that.buildchartRegion(result);
-        loadchart++;
-
-      }, (err) => {
-        this.presentToast(err);
-      });
-      // End chartRegion
-    }, (err) => {
-      this.navCtrl.setRoot(LoginPage);
-      this.presentToast(err);
-    });
-    that.loading.dismiss();
-  }
+  ionViewDidLoad() { }
 
 }

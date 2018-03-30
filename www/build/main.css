@@ -25738,6 +25738,21 @@ ion-navbar.toolbar {
   margin-top: 10px;
 }
 
+.sort-children {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}
+
 button {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
@@ -25749,46 +25764,76 @@ button {
   background-color: #F1F3F6;
 }
 
-#deal-header {
+#dealDonut-header {
   background: #BD97D0;
   border: 1px #9B59B6;
   border-radius: 5px;
 }
 
-#deal-header #icon-1 {
+#dealDonut-header #icon-1 {
   background: #9B59B6;
   border-radius: 5px;
   text-align: center;
 }
 
-#deal-header ion-icon {
-  font-size: 40px;
+#dealDonut-header ion-icon {
+  font-size: 30px;
   color: white;
+  margin-top: 17px;
+}
+
+#dealDonut-body {
+  background: white;
+  border-radius: 5px;
   margin-top: 10px;
 }
 
-#deal-body {
+#totalSale-header {
+  background: #80BCE6;
+  border: 1px #3498DB;
+  border-radius: 5px;
+}
+
+#totalSale-header #icon-1 {
+  background: #3498DB;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#totalSale-header ion-icon {
+  font-size: 30px;
+  color: white;
+  margin-top: 17px;
+}
+
+#totalSale-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 17px;
+}
+
+#totalSale-body {
   background: white;
   border-radius: 5px;
   margin-top: 10px;
 }
 
 #target-header {
-  background: #80BCE6;
-  border: 1px #3498DB;
+  background: #9BDB80;
+  border: 1px #62CB31;
   border-radius: 5px;
 }
 
 #target-header #icon-1 {
-  background: #3498DB;
+  background: #62CB31;
   border-radius: 5px;
   text-align: center;
 }
 
 #target-header ion-icon {
-  font-size: 40px;
+  font-size: 30px;
   color: white;
-  margin-top: 10px;
+  margin-top: 17px;
 }
 
 #target-body {
@@ -25797,81 +25842,130 @@ button {
   margin-top: 10px;
 }
 
-#last-year-header {
-  background: #9BDB80;
-  border: 1px #62CB31;
+#lastYear-header {
+  background: #EAAD77;
+  border: 1px #E67E22;
   border-radius: 5px;
 }
 
-#last-year-header #icon-1 {
-  background: #62CB31;
+#lastYear-header #icon-1 {
+  background: #E67E22;
   border-radius: 5px;
   text-align: center;
 }
 
-#last-year-header ion-icon {
+#lastYear-header ion-icon {
   font-size: 40px;
   color: white;
   margin-top: 10px;
 }
 
-#last-year-header i {
+#lastYear-header i {
   font-size: 30px;
   color: white;
-  margin-top: 10px;
+  margin-top: 17px;
 }
 
-#last-year-body {
+#lastYear-body {
   background: white;
   border-radius: 5px;
   margin-top: 10px;
 }
 
-#last-year-body #legend-header {
+#lastYear-body #legend-header {
   border-radius: 5px;
   background-color: #FDEDEC;
 }
 
-#last-year-body #legend-body {
+#lastYear-body #legend-body {
   margin-top: 5px;
   border-radius: 5px;
 }
 
-#last-year-body #legend-body ion-icon {
-  margin-top: 5px;
+#lastYear-body #legend-body ion-icon {
   border-radius: 5px;
 }
 
-#last-year-body #legend-body #legend {
-  margin: auto;
-}
-
-#last-year-body #legend-header #legend {
-  margin: auto;
-}
-
-#last-year-body #button {
+#lastYear-body #button {
   text-align: right;
 }
 
 @media screen and (max-width: 480px) {
-  #last-year-body #label {
+  #lastYear-body #label {
     text-align: center;
   }
-  #last-year-body #button {
+  #lastYear-body #button {
+    float: left;
+    text-align: center;
+  }
+}
+
+#lastYearRevenue-header {
+  background: #44A9A8;
+  border: 1px #3c9291;
+  border-radius: 5px;
+}
+
+#lastYearRevenue-header #icon-1 {
+  background: #3c9291;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#lastYearRevenue-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#lastYearRevenue-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 17px;
+}
+
+#lastYearRevenue-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#lastYearRevenue-body #legend-header {
+  border-radius: 5px;
+  background-color: #FDEDEC;
+}
+
+#lastYearRevenue-body #legend-body {
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+#lastYearRevenue-body #legend-body ion-icon {
+  border-radius: 5px;
+}
+
+#lastYearRevenue-body #button {
+  text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+  #lastYearRevenue-body #label {
+    text-align: center;
+  }
+  #lastYearRevenue-body #button {
     float: left;
     text-align: center;
   }
 }
 
 #service-header {
-  background: #EAAD77;
-  border: 1px #E67E22;
+  background: #BD97D0;
+  border: 1px #9B59B6;
   border-radius: 5px;
 }
 
 #service-header #icon-1 {
-  background: #E67E22;
+  background: #9B59B6;
   border-radius: 5px;
   text-align: center;
 }
@@ -25885,7 +25979,7 @@ button {
 #service-header i {
   font-size: 30px;
   color: white;
-  margin-top: 15px;
+  margin-top: 17px;
 }
 
 #service-body {
@@ -25895,13 +25989,13 @@ button {
 }
 
 #region-header {
-  background: #44A9A8;
-  border: 1px #3c9291;
+  background: #80BCE6;
+  border: 1px #3498DB;
   border-radius: 5px;
 }
 
 #region-header #icon-1 {
-  background: #3c9291;
+  background: #3498DB;
   border-radius: 5px;
   text-align: center;
 }
@@ -25915,7 +26009,7 @@ button {
 #region-header i {
   font-size: 30px;
   color: white;
-  margin-top: 15px;
+  margin-top: 17px;
 }
 
 #region-body {
@@ -25988,6 +26082,91 @@ button {
     float: left;
     text-align: center;
   }
+}
+
+#incomingBD2-header {
+  background: #9BDB80;
+  border: 1px #62CB31;
+  border-radius: 5px;
+}
+
+#incomingBD2-header #icon-1 {
+  background: #62CB31;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#incomingBD2-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#incomingBD2-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 10px;
+}
+
+#incomingBD2-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#incomingBD2-body #legend-header {
+  background-color: #62CB31;
+  border-radius: 5px;
+}
+
+#incomingBD2-body #legend-body {
+  margin-top: 5px;
+  background-color: #9BDB80;
+  border-radius: 5px;
+}
+
+#incomingBD2-body #button {
+  text-align: right;
+}
+
+@media screen and (max-width: 480px) {
+  #incomingBD2-body #label {
+    text-align: center;
+  }
+  #incomingBD2-body #button {
+    float: left;
+    text-align: center;
+  }
+}
+
+#sector-header {
+  background: #EAAD77;
+  border: 1px #E67E22;
+  border-radius: 5px;
+}
+
+#sector-header #icon-1 {
+  background: #E67E22;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#sector-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#sector-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 15px;
+}
+
+#sector-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 #sector-header {
@@ -26091,13 +26270,92 @@ button {
   margin-top: 10px;
 }
 
-#sales-body #legend-header {
-  background-color: #62CB31;
+#salesBD2HD-header {
+  background: #EAAD77;
+  border: 1px #E67E22;
   border-radius: 5px;
 }
 
-#sales-body #legend-body {
-  margin-top: 5px;
-  background-color: #9BDB80;
+#salesBD2HD-header #icon-1 {
+  background: #E67E22;
   border-radius: 5px;
+  text-align: center;
+}
+
+#salesBD2HD-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD2HD-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD2HD-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#salesBD1DT-header {
+  background: #44A9A8;
+  border: 1px #3c9291;
+  border-radius: 5px;
+}
+
+#salesBD1DT-header #icon-1 {
+  background: #3c9291;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#salesBD1DT-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD1DT-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD1DT-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#salesBD2DT-header {
+  background: #BD97D0;
+  border: 1px #9B59B6;
+  border-radius: 5px;
+}
+
+#salesBD2DT-header #icon-1 {
+  background: #9B59B6;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#salesBD2DT-header ion-icon {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD2DT-header i {
+  font-size: 30px;
+  color: white;
+  margin-top: 10px;
+}
+
+#salesBD2DT-body {
+  background: white;
+  border-radius: 5px;
+  margin-top: 10px;
 }

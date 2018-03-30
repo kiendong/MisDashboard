@@ -131,7 +131,7 @@ export class SourcePage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong / 1000)
+        y: Math.round((element.SoLuong / 1000) * 100) / 100
       };
       modifydata.push(commentData);
     });
@@ -160,7 +160,7 @@ export class SourcePage {
         // }
         formatter: function () {
           //if (this.point.y != 0) {
-          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, '.', ',') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
+          return '<span style="font-size:16px; font-weight: normal">' + this.point.name + ': ' + HighCharts.numberFormat(this.point.y, 0, ',', '.') + ' (<b>' + this.percentage.toFixed(1) + '</b>%)' + '</span>';
           // }
         }
       },
@@ -239,7 +239,7 @@ export class SourcePage {
           that.totalSector = that.totalSector + element.SoLuong;
 
         });
-        that.totalSector = Math.round(that.totalSector);
+        that.totalSector = Math.round((that.totalSector) * 100) / 100;
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

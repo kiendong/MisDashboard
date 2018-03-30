@@ -131,7 +131,7 @@ export class DealLossPage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong)
+        y: Math.round(element.SoLuong * 100) / 100
       };
       modifydata.push(commentData);
     });
@@ -231,7 +231,7 @@ export class DealLossPage {
         result.forEach(element => {
           that.totalDealLoss = that.totalDealLoss + element.SoLuong;
         });
-        that.totalDealLoss = Math.round(that.totalDealLoss);
+        that.totalDealLoss = Math.round(that.totalDealLoss * 100) / 100;
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

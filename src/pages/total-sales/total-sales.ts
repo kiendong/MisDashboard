@@ -365,7 +365,7 @@ export class TotalSalesPage {
             that.totalSale1 = that.totalSale1 + elm;
           });
         });
-        that.totalSale1 = Math.round(that.totalSale1);
+        that.totalSale1 = Math.round(that.totalSale1 * 100) / 100;
 
       }, (err) => {
         this.presentToast(err);
@@ -382,7 +382,7 @@ export class TotalSalesPage {
             that.totalSale3 = that.totalSale3 + elm;
           });
         });
-        that.totalSale3 = Math.round(that.totalSale3);
+        that.totalSale3 = Math.round(that.totalSale3 * 100) / 100;
       }, (err) => {
         this.presentToast(err);
       });

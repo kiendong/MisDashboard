@@ -33,7 +33,7 @@ export class MyApp {
   userStorage = {
     sub: 'OCD',
     email: 'ocd@ocd.vn',
-    profile: ''
+    profile: 'assets/imgs/logo.png'
   };
   constructor(public platform: Platform,
     public statusBar: StatusBar,
@@ -49,7 +49,7 @@ export class MyApp {
       this.userStorage = {
         sub: 'OCD',
         email: 'ocd@ocd.vn',
-        profile: ''
+        profile: 'assets/imgs/logo.png'
       };
     }
     this.initializeApp();

@@ -130,7 +130,7 @@ export class SectorPage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong / 1000)
+        y: Math.round((element.SoLuong / 1000) * 100) / 100
       };
       modifydata.push(commentData);
     });
@@ -235,7 +235,7 @@ export class SectorPage {
           that.totalSector = that.totalSector + element.SoLuong;
 
         });
-        that.totalSector = Math.round(that.totalSector);
+        that.totalSector = Math.round((that.totalSector) * 100) / 100;
 
         that.loading.dismiss();
       }, (err) => {

@@ -93,5 +93,40 @@ export class AuthService {
       resolve(true);
     });
   }
+  connectWithAuth(pmethod, URL, data, token) {
+    let headers = new Headers({
+      "Data-type": "json",
+      'Content-type': 'application/json;charset=utf-8',
+      'Authorization': 'Bearer ' + token,
+    });
+    let options = new RequestOptions({ headers: headers });
 
+    if (pmethod == "GET") {
+      options.search = data;
+      // return this.http.get(URL, options).map(res => res.json()).toPromise();
+      return new Promise((resolve, reject) => {
+        // We're using Angular HTTP provider to request the data,
+        // then on the response, it'll map the JSON data to a parsed JS object.
+        // Next, we process the data and resolve the promise with the new data.
+        this.http.get(URL, options)
+          .subscribe(data => {
+            // we've got back the raw data, now generate the core schedule data
+            // and save the data for later reference
+            resolve(data.json());
+            //debugger;
+          }, (err) => {
+            reject(err);
+          });
+      });
+    }
+    else if (pmethod == "POST") {
+      return this.http.post(URL, JSON.stringify(data), options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "PUT") {
+      return this.http.put(URL, data, options).map(res => res.json()).toPromise();
+    }
+    else if (pmethod == "DELETE") {
+      return this.http.delete(URL, options).map(res => res.json()).toPromise();
+    }
+  }
 }

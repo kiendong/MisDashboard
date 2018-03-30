@@ -3,10 +3,10 @@
     <ion-toolbar>
       <ion-title>
         <ion-row>
-          <ion-col col-5 *ngIf="userStorage.profile !==''">
+          <ion-col col-5 *ngIf="userStorage.profile !='assets/imgs/logo.png'">
             <img style="width:100px;height:100px; border-radius:50%;" src="http://hrm.ocd.vn/uploads/avatar/{{userStorage.profile}}.jpg">
           </ion-col>
-          <ion-col col-5 *ngIf="userStorage.profile ===''">
+          <ion-col col-5 *ngIf="userStorage.profile =='assets/imgs/logo.png'">
             <img style="width:100px;height:100px; border-radius:50%;" src="assets/imgs/logo.png">
           </ion-col>
           <ion-col col-7 style="font-size:18px">

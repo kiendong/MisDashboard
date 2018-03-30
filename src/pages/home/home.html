@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding id="dashboard">
+<ion-content id="dashboard">
   <ion-grid>
     <ion-row>
       <ng-container *ngFor="let number of numbers">
@@ -95,7 +95,7 @@
             </ion-col>
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
-                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                <ion-col col-12 id="" style="font-size:18px;font-weight: bold;color:white">
                   {{SaleTotalHDNow.toLocaleString()}} M vs {{SaleTotalHDLastYear.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
@@ -154,7 +154,7 @@
             </ion-col>
             <ion-col col-9 col-sm-10 id="title">
               <ion-row>
-                <ion-col col-12 id="" style="font-size:20px;font-weight: bold;color:white">
+                <ion-col col-12 id="" style="font-size:18px;font-weight: bold;color:white">
                   {{SaleTotalDTNow.toLocaleString()}} M vs {{SaleTotalDTLastYear.toLocaleString()}} M
                 </ion-col>
                 <ion-col col-12 style="color:white; font-size: 18px;">
@@ -201,7 +201,7 @@
                   </ion-col>
 
                   <ion-col col-4 col-sm-12 id="legend" *ngIf="arrayTrendsDT[numberTrends] == 0">
-                    <ion-icon name="md-remove" style="color : #E67E22;"> {{arrayTrendsDTABS[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
+                    <ion-icon name="md-arrow-forward" style="color : #E67E22;"> {{arrayTrendsDTABS[numberTrends]}}% </ion-icon> - {{ArrayFinancialMonth[numberTrends]}}
                   </ion-col>
                 </ng-container>
               </ion-row>

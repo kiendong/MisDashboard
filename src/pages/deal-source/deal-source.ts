@@ -132,7 +132,7 @@ export class DealSourcePage {
     data.forEach(element => {
       let commentData = {
         name: element.Label,
-        y: Math.round(element.SoLuong)
+        y: Math.round(element.SoLuong * 100) / 100
       };
       modifydata.push(commentData);
     });
@@ -230,7 +230,7 @@ export class DealSourcePage {
         result.forEach(element => {
           that.totalDealsource = that.totalDealsource + element.SoLuong;
         });
-        that.totalDealsource = Math.round(that.totalDealsource);
+        that.totalDealsource = Math.round(that.totalDealsource * 100) / 100;
         that.ArrayFinancialMonth = result.Category_Date;
         that.loading.dismiss();
       }, (err) => {

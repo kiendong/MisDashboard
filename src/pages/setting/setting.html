@@ -41,45 +41,46 @@
             <!-- <ion-icon name="ios-arrow-down"></ion-icon> -->
           </ion-col>
         </ion-row>
-        <ion-row id="sector-body">
-          <ion-col col-12>
-            <form (submit)="setChartPosition(chartPositions)">
-              <!-- <form (submit)="doLogin()" style="border-radius:5px;"> -->
-              <ion-item>
-                <ion-icon item-left> Sales vs target</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartTarget" min="1" max="7" type="number" placeholder="Position" name="chartTarget"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> Deals Total</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartDealDonut" name="chartDealDonut" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> Total sales</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartTotalSales" name="chartTotalSales" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> Sales vs last year</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartLastYear" name="chartLastYear" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> revenues vs last year</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartLastYearRevenue" name="chartLastYearRevenue" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> Sales by service</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartService" name="chartService" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-icon item-left> Sales by client region</ion-icon>
-                <ion-input [(ngModel)]="chartPositions.chartRegion" name="chartRegion" min="1" max="7" type="number" placeholder="Position"></ion-input>
-              </ion-item>
-              <button ion-button style="background-color:#32DB64; margin-left:50%;margin-top:20px" type="submit">
-                Save
-              </button>
-            </form>
-          </ion-col>
 
-        </ion-row>
+        <form (submit)="setChartPosition(chartPositions)">
+          <!-- <form (submit)="doLogin()" style="border-radius:5px;"> -->
+          <ion-item>
+            <div clear item-left>
+              Sales vs target
+            </div>
+            <ion-input [(ngModel)]="chartPositions.chartTarget" min="1" max="7" type="number" placeholder="Position" name="chartTarget"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> Deals Total</div>
+            <ion-input [(ngModel)]="chartPositions.chartDealDonut" name="chartDealDonut" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> Total sales</div>
+            <ion-input [(ngModel)]="chartPositions.chartTotalSales" name="chartTotalSales" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> Sales vs last year </div>
+            <ion-input [(ngModel)]="chartPositions.chartLastYear" name="chartLastYear" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> revenues vs last year </div>
+            <ion-input [(ngModel)]="chartPositions.chartLastYearRevenue" name="chartLastYearRevenue" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> Sales by service </div>
+            <ion-input [(ngModel)]="chartPositions.chartService" name="chartService" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <ion-item>
+            <div clear item-left> Sales by client region </div>
+            <ion-input [(ngModel)]="chartPositions.chartRegion" name="chartRegion" min="1" max="7" type="number" placeholder="Position"></ion-input>
+          </ion-item>
+          <button ion-button style="background-color:#32DB64; margin-left:50%;margin-top:20px" type="submit">
+            Save
+          </button>
+        </form>
+
+
+
       </ion-col>
     </ion-row>
   </ion-grid>
